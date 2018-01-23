@@ -13,15 +13,15 @@ namespace HelloWorld
 
             Console.WriteLine("Hello World");
 
-            do
-            {
-                Console.WriteLine("Press q to exit");
-                string test = Console.ReadLine();
-                if (test == "q")
-                {
-                    break;
-                }
-            } while (true);
+            //do
+            //{
+            //    Console.WriteLine("Press q to exit");
+            //    string test = Console.ReadLine();
+            //    if (test == "q")
+            //    {
+            //        break;
+            //    }
+            //} while (true);
         }
     }
 }
