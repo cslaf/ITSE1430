@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 /*
  * Author: Cade Schlaefli
  * Course: ITSE-1430-21722
- * Date: 1/24/2018
+ * Date: 1/25/2018
  * 
- * Todo: clean up MovieList.removeMovie, 
- * edit main menu it so it only holds 1 movie
+ * 
+ * 
 */
 namespace cadeschlaefli.MovieLib.host
 {
@@ -17,48 +17,130 @@ namespace cadeschlaefli.MovieLib.host
     {
         static void Main( string[] args )
         {
-            bool quit = false;
-            int pick;
-            string userInput;
+            char pick;
 
-            string[] mainMenuCommands = { "1. List Movies", "2. Add Movie", "3. Remove Movie", "4. Quit" };
+            string[] mainMenuCommands = { "List Movies", "Add Movie", "Remove Movie", "Quit" };
 
-            MovieList movieList = new MovieList();
+            var movieList = new MovieList();
 
             //main menu loop
             do
             {
-                foreach (string c in mainMenuCommands)
+                Console.WriteLine("Use the number or first letter of each selection to make your choice");
+                int index = 0;
+                foreach (string commands in mainMenuCommands)
                 {
-                    Console.WriteLine(c + "\n");
+                    index++;
+                    Console.WriteLine(index+". "+commands);
                 }
 
-                userInput = Console.ReadLine();
-
-                if (Int32.TryParse(userInput, out pick))
+                pick = Console.ReadKey().KeyChar;
+                pick = Char.ToUpper(pick);
+                Console.Write("\b"); //backs up a char
+                
+                switch (pick)
                 {
-                    switch (pick)
+                    case '1':
+                    case 'L':
+                        movieList.PrintMovies();
+                        break;
+                    case '2':
+                    case 'A':
+                    //movieList.AddMovie();
+                    movieList.EditMovie();
+                        break;
+                    case '3':
+                    case 'R':
+                    //movieList.RemoveMovie();
+                    movieList.SimpleRemoveMovie();
+                        break;
+                    case '4':
+                    case 'Q':
+                        return;
+                    default:
+                        //Console.Clear();
+                        //Console.WriteLine("Invalid input");
+                        break;
+                }
+
+            } while (true); 
+        }
+
+    }
+
+    public class InputChecker
+    {
+
+        //prompts user for yes or no answer to a question, returns a bool
+        public static bool PromptYesNo( string userPrompt )
+        {
+            string toCheck;
+            while (true)
+            {
+                Console.WriteLine(userPrompt);
+                toCheck = Console.ReadLine();
+                switch (toCheck)
+                {
+                    case "y":
+                    case "Y":
+                        return true;
+                    case "n":
+                    case "N":
+                        return false;
+                    default:
+                    //Console.Write("Enter (Y/N):");
+                        break;
+                }
+            }
+        }
+
+        public static int PromptFromRange( string userPrompt, int min, int max )
+        {
+            string userInput;
+            int value;
+
+            while (true)
+            {
+                Console.WriteLine(userPrompt);
+                userInput = Console.ReadLine();
+                if (Int32.TryParse(userInput, out value))
+                {
+                    if (value >= min && value <= max)
                     {
-                        case 1:
-                            movieList.ListMovies();
-                            break;
-                        case 2:
-                            movieList.AddMovie();
-                            break;
-                        case 3:
-                            movieList.RemoveMovie();
-                            break;
-                        case 4:
-                            quit = true;
-                            break;
-                        default:
-                            Console.WriteLine("Invalid input");
-                            break;
+                        return value;
                     }
                 }
-
-            } while (!quit); 
+                Console.WriteLine("Please enter a whole nuber between " + min+" and " + max);
+            }
         }
+
+        public static int PromptFromRange( string userPrompt, int min, int max, int defaultValue )
+        {
+            string userInput;
+            int value;
+
+            while (true)
+            {
+                Console.WriteLine(userPrompt);
+                userInput = Console.ReadLine();
+
+                if (userInput == "")
+                {
+                    return defaultValue;
+                }
+
+                if (Int32.TryParse(userInput, out value))
+                {
+                    if (value >= min && value <= max)
+                    {
+                        return value;
+                    }
+                }
+                Console.WriteLine("Please enter a whole nuber between " + min + " and " + max);
+            }
+        }
+
+
     }
 
     class Movie
@@ -72,11 +154,11 @@ namespace cadeschlaefli.MovieLib.host
             string toCheck;
             do
             {
-                Console.WriteLine("Enter title:\n");
+                Console.WriteLine("Enter title");
                 toCheck = Console.ReadLine();
                 if (toCheck.Length == 0)
                 {
-                    Console.WriteLine("You must enter a name\n");
+                    Console.WriteLine("You must enter a name");
                 } else
                 {
                     title = toCheck;
@@ -92,53 +174,21 @@ namespace cadeschlaefli.MovieLib.host
 
         void SetDescription()
         {
-            Console.WriteLine("Enter optional description:\n");
+            Console.WriteLine("Enter optional description:");
             description = Console.ReadLine();
         }
 
         void SetLength()
         {
-            string toCheck;
-            do
-            {
-                Console.WriteLine("Enter optional length in mins(or 0):\n");
-                toCheck = Console.ReadLine();
-                if (Int32.TryParse(toCheck, out length))
-                {
-                    if (length >= 0)
-                    {
-                        break;
-                    }
-                }
-                Console.WriteLine("Length must be a whole number >= 0:\n");
-            } while (true);
+            string userPrompt = "Enter optional length in mins:";
+            length = InputChecker.PromptFromRange(userPrompt, 0, Int32.MaxValue, 0);
         }
 
         void SetOwnership()
         {
-            string toCheck;
-            bool exit = false;
-            do
-            {
-                Console.WriteLine("Do you own the Movie? (Y/N)\n");
-                toCheck = Console.ReadLine();
-                switch (toCheck)
-                {
-                        case "y":
-                        case "Y":
-                            ownership = true;
-                            exit = true;
-                            break;
-                        case "n":
-                        case "N":
-                            ownership = false;
-                            exit = true;
-                            break;
-                        default:
-                            Console.WriteLine("Enter (Y/N)\n");
-                            break;
-                } 
-            } while (!exit);
+            string prompt = "Do you own the Movie? (Y/N)";
+            ownership = InputChecker.PromptYesNo(prompt);
+
         }
 
         public void SetInfo()
@@ -152,15 +202,15 @@ namespace cadeschlaefli.MovieLib.host
             SetOwnership();
         }
         
-        public void ListInfo()
+        public void PrintInfo()
         {
-            Console.WriteLine(title + "\n" + description + "\nRun Length = " + length + "\n");
+            Console.WriteLine("Title : "+ title + "\n" + description + "\nRun Time = " + length + "");
             if (ownership)
             {
-                Console.WriteLine("Is Owned\n");
+                Console.WriteLine("Owned");
             } else
             {
-                Console.WriteLine("Not Owned\n");
+                Console.WriteLine("Not Owned");
             }
         }
 
@@ -169,15 +219,18 @@ namespace cadeschlaefli.MovieLib.host
     //Manages Movies on the list by adding, removing, or changing info
     class MovieList
     {
-        List<Movie> movieList = new List<Movie>();
+        List<Movie> movies = new List<Movie>();
 
-        public void ListMovies()
+        public void PrintMovies()
         {
-            if(movieList.Count != 0)
+            int index = 0;
+            if(movies.Count != 0)
             {
-                foreach(Movie m in movieList)
+                foreach(Movie movie in movies)
                 {
-                    m.ListInfo();
+                    index++;
+                    //Console.WriteLine(index + ".");
+                    movie.PrintInfo();
                 }
             } else
             {
@@ -189,91 +242,83 @@ namespace cadeschlaefli.MovieLib.host
         {
             Movie toAdd = new Movie();
             toAdd.SetInfo();
-            movieList.Add(toAdd);
+            movies.Add(toAdd);
         }
 
-        //lists movies with numbers to be removed
+        //lists movies and prompts removal by number in the list
         public void RemoveMovie()
         {
-            string userInput;
+            string loneDeletePrompt = "Remove the only remaining movie?(Y/N)",
+                deletePrompt = "Are you sure you want to delete the movie (Y/N)?",
+                listPrompt = "Remove which movie?(1-" + (movies.Count) + ")";
+            
 
+            if (movies.Count == 0)
+            {
+                Console.WriteLine("No Movies in list");
+                return;
+            }
+            //NUMBERED STARTING AT 1
+            for (int index = 1; index <= movies.Count ; index++)
+            {
+                Console.WriteLine(index + ". " + movies[index-1].GetTitle());
+            }
 
-            if (movieList.Count == 0)
+            if (movies.Count > 1)
+            {
+                int movieNumber = InputChecker.PromptFromRange(listPrompt, 1, movies.Count);
+                --movieNumber;                //OFFSET BY -1 FOR LIST ACCURACY
+                if (InputChecker.PromptYesNo(deletePrompt))
+                {
+                    movies.RemoveAt(movieNumber);
+                    Console.WriteLine(movies[movieNumber].GetTitle()+"deleted");
+                } else
+                {
+                    Console.WriteLine("Canceled");
+                }
+            } else
+            {
+                if (InputChecker.PromptYesNo(loneDeletePrompt))
+                {
+                    Console.WriteLine(movies[0].GetTitle() + " deleted");
+                    movies.RemoveAt(0);
+                } else
+                {
+                    Console.WriteLine("Canceled");
+                }
+            }
+        }
+        //just for imitating lab1
+        public void SimpleRemoveMovie()
+        {
+            string loneDeletePrompt = "Remove the only remaining movie?(Y/N)";
+
+            if (movies.Count == 0)
             {
                 Console.WriteLine("No Movies in list");
                 return;
             }
 
-            for (int i = 0; i < movieList.Count ; i++)
+            if (InputChecker.PromptYesNo(loneDeletePrompt))
             {
-                Console.WriteLine(i + ". " + movieList[i].GetTitle()+"\n");
+                Console.WriteLine(movies[0].GetTitle() + " deleted");
+                movies.RemoveAt(0);
+            } else
+            {
+                Console.WriteLine("Canceled");
             }
-
-            do
+        }
+        //add functionality later, right now being used to imitate not using a list
+        public void EditMovie()
+        {
+            //just for imitation, should just return a message
+            if(movies.Count == 0)
             {
-                if (movieList.Count > 1)
-                {
-                    Console.WriteLine("Remove which movie?(0-" + (movieList.Count - 1) + ")\n");
-                    userInput = Console.ReadLine();
-                    if (Int32.TryParse(userInput, out var movieNumber))
-                    {
-                        if ((movieNumber >= 0) && (movieNumber <= movieList.Count - 1))
-                        {
-                            bool exit = false;
-                            do
-                            {
-                                Console.WriteLine("Are you sure you want to delete the movie (Y/N)?\n");
-                                userInput = Console.ReadLine();
-                                switch (userInput)
-                                {
-                                    case "y":
-                                    case "Y":
-                                        movieList.RemoveAt(movieNumber);
-                                        Console.WriteLine("\nMovie Removed");
-                                        exit = true;
-                                        break;
-                                    case "n":
-                                    case "N":
-                                        Console.WriteLine("\nCanceled");
-                                        exit = true;
-                                        break;
-                                    default:
-                                        Console.WriteLine("\nEnter (Y/N)");
-                                        break;
-                                }
-                            } while (!exit);
-                            break;
-                        }
-                    }
-                } else
-                {
-                    bool exit = false;
-                    do
-                    {
-                        Console.WriteLine("Remove the only movie?(Y/N)\n");
-                        userInput = Console.ReadLine();
-                        switch (userInput)
-                        {
-                            case "y":
-                            case "Y":
-                            movieList.RemoveAt(0);
-                            Console.WriteLine("\nMovie Removed");
-                            exit = true;
-                            break;
-                            case "n":
-                            case "N":
-                            Console.WriteLine("\nCanceled");
-                            exit = true;
-                            break;
-                            default:
-                            Console.WriteLine("\nEnter (Y/N)");
-                            break;
-                        }
-                    } while (!exit);
-                    break;
-
-                }
-            } while (true);
+                AddMovie();
+            } else
+            {
+                movies[0].SetInfo();
+            }
         }
     }
 }

@@ -10,8 +10,28 @@ namespace Nile.Host
     {
         static void Main( string[] args )
         {
+                        
+        }
+
+        static void PlayingWithPrimitives()
+        {
+            //primitve
+            decimal unitPrice = 10.5M;
+
+            //Using System.Decimal instead
+            Decimal unitPrice2 = 10.5M;
+
+            //Current time
+            DateTime now = DateTime.Now;
+
+            //full declaration of ArrayList
+            System.Collections.ArrayList items;
+        }
+
+        static void PlayingWithVariables()
+        {
             int hours = 0;
-            double rate =10.25;
+            double rate = 10.25;
 
             int hours2 = hours;
 
@@ -37,7 +57,6 @@ namespace Nile.Host
             double ceiling = Math.Ceiling(rate);
             double floor = ceiling;
 
-            
         }
     }
 }
