@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * Author: Cade Schlaefli
+ * Course: ITSE-1430-21722
+ * Date: 1/24/2018
+ * 
+ * Todo: clean up MovieList.removeMovie, 
+ * edit main menu it so it only holds 1 movie
+*/
 namespace cadeschlaefli.MovieLib.host
 {
     class Program
@@ -16,14 +23,16 @@ namespace cadeschlaefli.MovieLib.host
 
             string[] mainMenuCommands = { "1. List Movies", "2. Add Movie", "3. Remove Movie", "4. Quit" };
 
-            MovieList MovieList = new MovieList();
+            MovieList movieList = new MovieList();
 
+            //main menu loop
             do
             {
                 foreach (string c in mainMenuCommands)
                 {
                     Console.WriteLine(c + "\n");
                 }
+
                 userInput = Console.ReadLine();
 
                 if (Int32.TryParse(userInput, out pick))
@@ -31,30 +40,26 @@ namespace cadeschlaefli.MovieLib.host
                     switch (pick)
                     {
                         case 1:
-                        MovieList.listMovies();
-                        break;
+                            movieList.ListMovies();
+                            break;
                         case 2:
-                        MovieList.addMovie();
-                        break;
+                            movieList.AddMovie();
+                            break;
                         case 3:
-                        MovieList.removeMovie();
-                        break;
+                            movieList.RemoveMovie();
+                            break;
                         case 4:
-                        quit = true;
-                        break;
+                            quit = true;
+                            break;
                         default:
-                        Console.WriteLine("Invalid input");
-                        break;
+                            Console.WriteLine("Invalid input");
+                            break;
                     }
                 }
 
-            } while (!quit);
-            
+            } while (!quit); 
         }
     }
-
-
-
 
     class Movie
     {
@@ -62,7 +67,7 @@ namespace cadeschlaefli.MovieLib.host
         int length;
         bool ownership;
 
-        void setTitle()
+        void SetTitle()
         {
             string toCheck;
             do
@@ -80,18 +85,18 @@ namespace cadeschlaefli.MovieLib.host
             } while (true);
         }
 
-        public string getTitle()
+        public string GetTitle()
         {
             return title;
         }
 
-        void setDescription()
+        void SetDescription()
         {
             Console.WriteLine("Enter optional description:\n");
             description = Console.ReadLine();
         }
 
-        void setLength()
+        void SetLength()
         {
             string toCheck;
             do
@@ -109,7 +114,7 @@ namespace cadeschlaefli.MovieLib.host
             } while (true);
         }
 
-        void setOwnership()
+        void SetOwnership()
         {
             string toCheck;
             bool exit = false;
@@ -121,33 +126,33 @@ namespace cadeschlaefli.MovieLib.host
                 {
                         case "y":
                         case "Y":
-                    ownership = true;
-                    exit = true;
-                    break;
+                            ownership = true;
+                            exit = true;
+                            break;
                         case "n":
                         case "N":
-                    ownership = false;
-                    exit = true;
-                    break;
+                            ownership = false;
+                            exit = true;
+                            break;
                         default:
-                    Console.WriteLine("Enter (Y/N)\n");
-                    break;
+                            Console.WriteLine("Enter (Y/N)\n");
+                            break;
                 } 
             } while (!exit);
         }
 
-        public void setInfo()
+        public void SetInfo()
         {
-            setTitle();
+            SetTitle();
 
-            setDescription();
+            SetDescription();
 
-            setLength();
+            SetLength();
 
-            setOwnership();
+            SetOwnership();
         }
         
-        public void listInfo()
+        public void ListInfo()
         {
             Console.WriteLine(title + "\n" + description + "\nRun Length = " + length + "\n");
             if (ownership)
@@ -161,54 +166,58 @@ namespace cadeschlaefli.MovieLib.host
 
     }
 
-
+    //Manages Movies on the list by adding, removing, or changing info
     class MovieList
     {
-        List<Movie> mList = new List<Movie>();
-        public void listMovies()
+        List<Movie> movieList = new List<Movie>();
+
+        public void ListMovies()
         {
-            if(mList.Count != 0)
+            if(movieList.Count != 0)
             {
-                foreach(Movie m in mList)
+                foreach(Movie m in movieList)
                 {
-                    m.listInfo();
+                    m.ListInfo();
                 }
             } else
             {
                 Console.WriteLine("No Movies in list");
             }
         }
-        public void addMovie()
+
+        public void AddMovie()
         {
             Movie toAdd = new Movie();
-            toAdd.setInfo();
-            mList.Add(toAdd);
+            toAdd.SetInfo();
+            movieList.Add(toAdd);
         }
-        public void removeMovie()
+
+        //lists movies with numbers to be removed
+        public void RemoveMovie()
         {
             string userInput;
-            int movieNumber;
 
-            if (mList.Count == 0)
+
+            if (movieList.Count == 0)
             {
                 Console.WriteLine("No Movies in list");
                 return;
             }
 
-            for (int i = 0; i < mList.Count ; i++)
+            for (int i = 0; i < movieList.Count ; i++)
             {
-                Console.WriteLine(i + ". " + mList[i].getTitle()+"\n");
+                Console.WriteLine(i + ". " + movieList[i].GetTitle()+"\n");
             }
 
             do
             {
-                if (mList.Count > 1)
+                if (movieList.Count > 1)
                 {
-                    Console.WriteLine("Remove which movie?(0-" + (mList.Count - 1) + ")\n");
+                    Console.WriteLine("Remove which movie?(0-" + (movieList.Count - 1) + ")\n");
                     userInput = Console.ReadLine();
-                    if (Int32.TryParse(userInput, out movieNumber))
+                    if (Int32.TryParse(userInput, out var movieNumber))
                     {
-                        if ((movieNumber >= 0) && (movieNumber <= mList.Count - 1))
+                        if ((movieNumber >= 0) && (movieNumber <= movieList.Count - 1))
                         {
                             bool exit = false;
                             do
@@ -219,18 +228,18 @@ namespace cadeschlaefli.MovieLib.host
                                 {
                                     case "y":
                                     case "Y":
-                                    mList.RemoveAt(movieNumber);
-                                    Console.WriteLine("\nMovie Removed");
-                                    exit = true;
-                                    break;
+                                        movieList.RemoveAt(movieNumber);
+                                        Console.WriteLine("\nMovie Removed");
+                                        exit = true;
+                                        break;
                                     case "n":
                                     case "N":
-                                    Console.WriteLine("\nCanceled");
-                                    exit = true;
-                                    break;
+                                        Console.WriteLine("\nCanceled");
+                                        exit = true;
+                                        break;
                                     default:
-                                    Console.WriteLine("\nEnter (Y/N)");
-                                    break;
+                                        Console.WriteLine("\nEnter (Y/N)");
+                                        break;
                                 }
                             } while (!exit);
                             break;
@@ -247,7 +256,7 @@ namespace cadeschlaefli.MovieLib.host
                         {
                             case "y":
                             case "Y":
-                            mList.RemoveAt(0);
+                            movieList.RemoveAt(0);
                             Console.WriteLine("\nMovie Removed");
                             exit = true;
                             break;
