@@ -10,7 +10,104 @@ namespace Nile.Host
     {
         static void Main( string[] args )
         {
-                        
+            bool quit = false;
+            char choice;
+
+            while (!quit)
+            {
+                //display menu
+                choice = DisplayMenu();
+                //process menu selection
+
+                switch (choice)
+                {
+                    case 'L':
+                        ListProducts();
+                        break;
+                    case 'A':
+                        AddProduct();
+                        break;
+                    case 'Q':
+                        quit = true;
+                        return;
+                    default:
+                        Console.WriteLine("How did you do this though?");
+                        break;
+
+                }
+            };
+        }
+
+        private static char DisplayMenu()
+        {
+            string[] menu = { "(L)ist Products", "(A)dd Product", "(Q)uit" };
+
+            do
+            {
+                foreach (string item in menu)
+                    Console.WriteLine(item);
+
+                string input = Console.ReadLine();
+                input = input.ToUpper();
+
+                if (input == "L")
+                    return input[0];
+                else if (input == "A")
+                    return input[0];
+                else if (input == "Q")
+                    return input[0];
+                Console.WriteLine("Please choose a valid option");
+            } while (true);
+
+        }
+
+
+        static string _name, _description;
+        static decimal _price;
+        private static void ListProducts()
+        {
+            if (_name != null && _name != "")
+            {
+                Console.WriteLine(_name);
+                Console.WriteLine(_price);
+                Console.WriteLine(_description);
+            } else
+            {
+                Console.WriteLine("No Products");
+            }
+        }
+
+        private static void AddProduct()
+        {
+            _name = ReadString("Enter a  name : ", true);
+
+            do
+            {
+                Console.Write("Enter price : ");
+                string toCheck = Console.ReadLine();
+                if (Decimal.TryParse(toCheck, out _price) && _price >= 0)
+                    break;
+                else
+                    Console.WriteLine("Value must be >= 0");
+            } while (true);
+
+            _description = ReadString("Enter optional description:", false);
+
+        }
+
+        private static string ReadString(string message, bool isRequired)
+        {
+            do
+            {
+                Console.Write(message);
+
+                string value = Console.ReadLine();
+
+                if (value == "" && isRequired)
+                    Console.WriteLine("You must enter a value");
+                else
+                    return value;
+            } while (true);
         }
 
         static void PlayingWithPrimitives()
@@ -43,6 +140,7 @@ namespace Nile.Host
             lastName = "Miller";
 
             firstName = lastName = "Sue";
+
 
             //Math ops
             int x = 0, y = 10;

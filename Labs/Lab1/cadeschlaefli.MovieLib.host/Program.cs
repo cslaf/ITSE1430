@@ -67,7 +67,7 @@ namespace cadeschlaefli.MovieLib.host
         }
 
     }
-
+    //A class with methods for getting user input that needs to be validated in some way 
     public class InputChecker
     {
 
@@ -267,7 +267,7 @@ namespace cadeschlaefli.MovieLib.host
             if (movies.Count > 1)
             {
                 int movieNumber = InputChecker.PromptFromRange(listPrompt, 1, movies.Count);
-                --movieNumber;                //OFFSET BY -1 FOR LIST ACCURACY
+                --movieNumber;                //OFFSET BY -1 FOR LIST
                 if (InputChecker.PromptYesNo(deletePrompt))
                 {
                     movies.RemoveAt(movieNumber);
