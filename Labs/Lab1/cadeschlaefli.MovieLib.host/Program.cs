@@ -23,10 +23,11 @@ namespace cadeschlaefli.MovieLib.host
 
             var movieList = new MovieList();
 
+            Console.WriteLine("Use the number or first letter of each selection to make your choice");
+
             //main menu loop
             do
             {
-                Console.WriteLine("Use the number or first letter of each selection to make your choice");
                 int index = 0;
                 foreach (string commands in mainMenuCommands)
                 {
@@ -35,10 +36,9 @@ namespace cadeschlaefli.MovieLib.host
                 }
 
                 pick = Console.ReadKey().KeyChar;
-                pick = Char.ToUpper(pick);
-                Console.Write("\b"); //backs up a char
+                Console.Write("\b"); //erases input
                 
-                switch (pick)
+                switch (Char.ToUpper(pick))
                 {
                     case '1':
                     case 'L':
@@ -110,7 +110,7 @@ namespace cadeschlaefli.MovieLib.host
                         return value;
                     }
                 }
-                Console.WriteLine("Please enter a whole nuber between " + min+" and " + max);
+                Console.WriteLine($"Please enter a whole nuber between {min} and {max}");
             }
         }
 
@@ -136,7 +136,7 @@ namespace cadeschlaefli.MovieLib.host
                         return value;
                     }
                 }
-                Console.WriteLine("Please enter a whole nuber between " + min + " and " + max);
+                Console.WriteLine($"Please enter a whole nuber between {min} and {max}");
             }
         }
 
@@ -204,7 +204,7 @@ namespace cadeschlaefli.MovieLib.host
         
         public void PrintInfo()
         {
-            Console.WriteLine("Title : "+ title + "\n" + description + "\nRun Time = " + length + "");
+            Console.WriteLine($"Title : {title}\n {description} \nRun Time = {length}");
             if (ownership)
             {
                 Console.WriteLine("Owned");
@@ -229,12 +229,26 @@ namespace cadeschlaefli.MovieLib.host
                 foreach(Movie movie in movies)
                 {
                     index++;
-                    //Console.WriteLine(index + ".");
+                    //Console.Write($"{index}. ");
                     movie.PrintInfo();
                 }
             } else
             {
                 Console.WriteLine("No Movies in list");
+            }
+        }
+
+        public void PrintMoviesTitle()
+        {
+            if (movies.Count == 0)
+            {
+                Console.WriteLine("No Movies in list");
+                return;
+            }
+
+            for (int index = 1; index <= movies.Count; index++)
+            {
+                Console.WriteLine($"{index} . {movies[index - 1].GetTitle()}");
             }
         }
 
@@ -252,17 +266,7 @@ namespace cadeschlaefli.MovieLib.host
                 deletePrompt = "Are you sure you want to delete the movie (Y/N)?",
                 listPrompt = "Remove which movie?(1-" + (movies.Count) + ")";
             
-
-            if (movies.Count == 0)
-            {
-                Console.WriteLine("No Movies in list");
-                return;
-            }
-            //NUMBERED STARTING AT 1
-            for (int index = 1; index <= movies.Count ; index++)
-            {
-                Console.WriteLine(index + ". " + movies[index-1].GetTitle());
-            }
+            PrintMoviesTitle();
 
             if (movies.Count > 1)
             {
@@ -271,7 +275,7 @@ namespace cadeschlaefli.MovieLib.host
                 if (InputChecker.PromptYesNo(deletePrompt))
                 {
                     movies.RemoveAt(movieNumber);
-                    Console.WriteLine(movies[movieNumber].GetTitle()+"deleted");
+                    Console.WriteLine($"{movies[movieNumber].GetTitle()} deleted");
                 } else
                 {
                     Console.WriteLine("Canceled");
@@ -280,7 +284,7 @@ namespace cadeschlaefli.MovieLib.host
             {
                 if (InputChecker.PromptYesNo(loneDeletePrompt))
                 {
-                    Console.WriteLine(movies[0].GetTitle() + " deleted");
+                    Console.WriteLine($"{movies[0].GetTitle()} deleted");
                     movies.RemoveAt(0);
                 } else
                 {
@@ -309,9 +313,10 @@ namespace cadeschlaefli.MovieLib.host
             }
         }
         //add functionality later, right now being used to imitate not using a list
+
         public void EditMovie()
         {
-            //just for imitation, should just return a message
+            //just for imitation, should just return an error message
             if(movies.Count == 0)
             {
                 AddMovie();
@@ -319,6 +324,26 @@ namespace cadeschlaefli.MovieLib.host
             {
                 movies[0].SetInfo();
             }
+
+            //select from list
+            if (movies.Count > 1)
+            {
+                string listPrompt = "Edit which movie?";
+
+                PrintMoviesTitle();
+
+                int movieNumber = InputChecker.PromptFromRange(listPrompt, 1, movies.Count);
+                --movieNumber;                //OFFSET BY -1 FOR LIST
+                if (InputChecker.PromptYesNo($"Edit {movies[movieNumber].GetTitle()}"))
+                {
+                    movies[movieNumber].SetInfo();
+                } else
+                {
+                    Console.WriteLine("Canceled");
+                }
+            }
+
+
         }
     }
 }

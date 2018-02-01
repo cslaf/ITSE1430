@@ -98,33 +98,61 @@ Week		Date		Topic								Quiz (Tentative)	Lab Due (Tentative)
 1	1/17	Introduction
 		
 2	1/22	Sectjon 1-	C# Basics, Data Types		
-	1/24	Variables and Strings		
+	1/24	Variables and Strings
+    
 3	1/29	Control Flow Statements and Expressions		
-	1/31	Objects		
+	
+    1/31	Objects
+    
 4	2/5		Section 2-	Namespaces, Classes and Fields							1
-	2/7		Properties and Methods							1	
+	
+    2/7		Properties and Methods							1	
+
 5	2/12	Windows Forms and Controls		
-	2/14	Constructors and Inheritance		
+	
+    2/14	Constructors and Inheritance		
+
 6	2/19	Form Layout, Containers and Events		
-	2/21	Child Forms, Form Lifetime and Validation		
+	
+    2/21	Child Forms, Form Lifetime and Validation		
+
 7	2/26	Section 3- 	Arrays and enumeration, ListBox							2
-	2/28	Generics and lists								2
+	
+    2/28	Generics and lists								2
+
 8	3/5		Initializers, Interfaces and Enumerable		
-	3/7		Abstract classes and binding sources		
+	
+    3/7		Abstract classes and binding sources		
+
 9	3/12	Spring Break		
+
 10	3/19	DataGridView		
-	3/21			
+	
+    3/21			
+
 11	3/26	Section 4	Files and Errors										3
-	3/28	IDisposable, LINQ and Anonymous Types			3	
+	
+    3/28	IDisposable, LINQ and Anonymous Types			3	
+
 12	4/2		Lambdas, Statics and Extensions		
-	4/4		Databases and ADO.NET		
+	
+    4/4		Databases and ADO.NET		
+
 13	4/9		Executing Database Commands	
-	4/11	(Last Day to Drop (4/12))	Reading Data		
+	
+    4/11	(Last Day to Drop (4/12))	Reading Data		
+
 14	4/16	Section 5-	Attributes, Web basics and HTML							4
-	4/18			
+	
+    4/18			
+
 15	4/23	ASP.NET and MVC									4	
-	4/25	Controllers, Models and Routing		
+	
+    4/25	Controllers, Models and Routing		
+
 16	4/30	Views and View Helpers		
-	5/2																			5
+	
+    5/2																			5
+
 17	5/7	Final Exams		
 

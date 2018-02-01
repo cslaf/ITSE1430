@@ -22,6 +22,7 @@ namespace Nile.Host
                 switch (choice)
                 {
                     case 'L':
+                        DisplayUser();
                         ListProducts();
                         break;
                     case 'A':
@@ -33,7 +34,6 @@ namespace Nile.Host
                     default:
                         Console.WriteLine("How did you do this though?");
                         break;
-
                 }
             };
         }
@@ -61,16 +61,42 @@ namespace Nile.Host
 
         }
 
+        private static void DisplayUser()
+        {
+            string fullUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            string user;
+            string endCheck = "1234567890";
+            int index = 0, end = -1;
+
+            fullUser = fullUser.Replace('.', ' ');
+            int front = fullUser.IndexOf('\\');
+            int middleConvert = fullUser.IndexOf('.');
+            foreach (char character in fullUser)
+            {
+                if (endCheck.Contains(character))
+                {
+                    end = index;
+                    break;
+                }
+                index++;
+            }
+
+            user = fullUser.Substring(++front, end-front);
+
+            Console.WriteLine(user);
+        }
 
         static string _name, _description;
         static decimal _price;
         private static void ListProducts()
         {
-            if (_name != null && _name != "")
+            if (!String.IsNullOrEmpty(_name))
             {
-                Console.WriteLine(_name);
-                Console.WriteLine(_price);
-                Console.WriteLine(_description);
+                //var msg = String.Format("{0} [${1}]", _name, _price);
+                string msg = $"{_name} [${_price}]";
+                Console.WriteLine(msg);
+                if(!String.IsNullOrEmpty(_description))
+                    Console.WriteLine(_description);
             } else
             {
                 Console.WriteLine("No Products");
@@ -81,18 +107,23 @@ namespace Nile.Host
         {
             _name = ReadString("Enter a  name : ", true);
 
-            do
-            {
-                Console.Write("Enter price : ");
-                string toCheck = Console.ReadLine();
-                if (Decimal.TryParse(toCheck, out _price) && _price >= 0)
-                    break;
-                else
-                    Console.WriteLine("Value must be >= 0");
-            } while (true);
+            _price = ReadDecimal("Enter price : ", 0);
 
             _description = ReadString("Enter optional description:", false);
 
+        }
+
+        private static decimal ReadDecimal(string message, int min )
+        {
+            do
+            {
+                Console.Write(message);
+                string toCheck = Console.ReadLine();
+                if (Decimal.TryParse(toCheck, out decimal value) && _price >= 0)
+                    return value;
+                else
+                    Console.WriteLine("Value must be >= "+min.ToString());
+            } while (true);
         }
 
         private static string ReadString(string message, bool isRequired)
