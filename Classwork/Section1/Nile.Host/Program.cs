@@ -187,5 +187,24 @@ namespace Nile.Host
             double floor = ceiling;
 
         }
+
+        static void PlayingWithReferences()
+        {
+            string message = "hello";
+            string name = null;
+
+            name = new string('*', 10);
+
+            object instance = name;
+
+            string str = instance as string;
+
+            if (instance is string)
+            {
+                string str2 = (string)instance;
+                Console.WriteLine(str);
+            } else
+                Console.WriteLine("Not a string");
+        }
     }
 }
