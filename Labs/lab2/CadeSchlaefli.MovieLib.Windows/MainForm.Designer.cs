@@ -30,7 +30,7 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -38,7 +38,7 @@
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.MaximumSize = new System.Drawing.Size(700, 400);
             this.MinimumSize = new System.Drawing.Size(700, 400);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Movie Library";
             this.ResumeLayout(false);
 
