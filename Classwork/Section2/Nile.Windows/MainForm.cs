@@ -12,9 +12,25 @@ namespace Nile.Windows
 {
     public partial class MainForm : Form
     {
+        public Button buttonTest;
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad( EventArgs e )
+        {
+            base.OnLoad(e);
+
+            var product = new Product();
+            product.Name = "whatever";
+            product.Description = "none";
+
+            
+            
+            var productB = new Product();
+            productB.Name = "whatever2";
+            productB.Description = product.Description;
         }
     }
 }

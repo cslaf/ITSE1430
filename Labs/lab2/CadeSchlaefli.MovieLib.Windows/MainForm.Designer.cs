@@ -36,8 +36,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(684, 361);
-            this.MaximumSize = new System.Drawing.Size(700, 400);
-            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "MainForm";
             this.Text = "Movie Library";
             this.ResumeLayout(false);
