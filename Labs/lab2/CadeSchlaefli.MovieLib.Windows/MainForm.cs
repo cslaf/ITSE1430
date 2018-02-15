@@ -12,52 +12,65 @@ namespace CadeSchlaefli.MovieLib.Windows
 {
     public partial class MainForm : Form
     {
+        Movie _movie;
         public MainForm()
         {
-            MainMenu mainMenu1 = new MainMenu();
-
-            string[] fileItems = { "Exit" },
-                movieItems = { "Add", "Edit", "Delete" },
-                helpItems = { "About" };
-
-            Movie movie = new Movie();
-
-            //this is a dumb way to initialize apparently
-            MenuItem fileMenu = MakeMenu("File", fileItems);
-            MenuItem movieMenu = MakeMenu("Movie", movieItems);
-            MenuItem helpMenu = MakeMenu("Help", helpItems);
-
-            mainMenu1.MenuItems.Add(fileMenu);
-            mainMenu1.MenuItems.Add(movieMenu);
-            mainMenu1.MenuItems.Add(helpMenu);
-
-
-            Menu = mainMenu1;
-
             InitializeComponent();
-        }
-
-        public MenuItem MakeMenu(string header, string[] items)
-        {
-            MenuItem headerMenu = new MenuItem();
-
-            headerMenu.Text = header;
-
-            foreach(var item in items)
-            {
-                MenuItem toAdd = new MenuItem();
-                toAdd.Text = item;
-                headerMenu.MenuItems.Add(toAdd);
-            }
-
-            return headerMenu;
         }
 
         protected override void OnLoad( EventArgs e )
         {
-
-
+            _movie = new Movie();
             base.OnLoad(e);
+        }
+
+        private void OnExit( object sender, EventArgs e )
+        {
+            if (ShowConfirmation("Are you sure you want to quit?", "Close"))
+                Close();
+        }
+
+        private void OnMovieAdd( object sender, EventArgs e )
+        {
+            var form = new MovieDetailForm();
+            form.Text = "Add Movie";
+            if (form.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            _movie = form.Movie;
+        }
+
+        private void OnMovieEdit( object sender, EventArgs e )
+        {
+            var form = new MovieDetailForm();
+            form.Text = "Add Movie";
+
+            //this no longer works?, maybe, make sure it's instansiated.
+            if (_movie.Title == "")
+            {
+                MessageBox.Show(this, "No Movie to Edit");
+                return;
+            }
+
+            form.ShowDialog();
+        }
+
+        private void OnMovieRemove( object sender, EventArgs e )
+        {
+            if (_movie.Title == "")
+                MessageBox.Show(this, "No Movie to Edit");
+            else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
+                _movie = new Movie();
+                
+        }
+
+        private void OnHelp( object sender, EventArgs e )
+        {
+
+        }
+        private bool ShowConfirmation( string message, string title )
+        {
+            return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
     }
 }

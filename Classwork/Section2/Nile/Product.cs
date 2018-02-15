@@ -10,15 +10,28 @@ namespace Nile
     public class Product
     {
         internal decimal DiscountPercentage = 0.10M;
+        private string _name;
+
+        //used auto-props for all these,
 
         /// <summary>Name of the product. </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name ?? ""; }
+            set { _name = value; }
+        }
         /// <summary>Description of the product. </summary>
         public string Description { get; set; }
         /// <summary>Price of Product in Dollars. </summary>
         public decimal Price { get; set; }
         /// <summary> If the product has been disconintued. </summary>
         public bool IsDiscontinued { get; set; }
+        /// <summary> Gives a discounted price if Product IsDiscontinued </summary>
+        public decimal ActualPrice
+        {
+            get { return IsDiscontinued ? (Price * DiscountPercentage) : Price; }
+            set { }
+        }
 
         /// <summary>Checks input to see if valid</summary>
         /// <returns>Error message or ""</returns>
@@ -30,6 +43,12 @@ namespace Nile
                 return "Price must be >= 0";
             return "";
         }
+
+/*        public int ShowingOffAcessibility
+        {
+            get { return 12; }
+            internal set { }
+        }*/
 
     }
 }

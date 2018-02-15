@@ -10,7 +10,7 @@ namespace CadeSchlaefli.MovieLib
     public class Movie
     {
         /// <summary>Title of the Movie. </summary>
-        public string Title { get => Title ?? ""; set { Title = value; } }
+        public string Title { get; set; } = "";
         /// <summary>Description of the Movie. </summary>
         public string Description { get; set; }
         /// <summary>Length of the Movie in Minutes. </summary>
