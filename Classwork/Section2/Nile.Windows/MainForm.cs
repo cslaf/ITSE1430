@@ -41,6 +41,7 @@ namespace Nile.Windows
             //modal form
             if (form.ShowDialog() != DialogResult.OK)
                 return;
+            //add product
             _product = form.Product;
         }
 
@@ -50,14 +51,25 @@ namespace Nile.Windows
                 Close();
         }
 
-        private void OnEdit( object sender, EventArgs e )
+        private void OnProductEdit( object sender, EventArgs e )
         {
+            if (_product == null)
+                return;
 
+            var form = new ProductDetailForm();
+            form.Text = "Edit Product";
+            form.Product = _product;
+            //modal form
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+            //add product
+            _product = form.Product;
         }
 
-        private void OnDelete( object sender, EventArgs e )
+        private void OnProductDelete( object sender, EventArgs e )
         {
-
+            if (ShowConfirmation("Are you sure?", "Remove product"))
+                _product = null;
         }
 
         private void OnAbout( object sender, EventArgs e )

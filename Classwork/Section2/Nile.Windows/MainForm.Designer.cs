@@ -92,7 +92,7 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editToolStripMenuItem.Text = "&Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.OnEdit);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.OnProductEdit);
             // 
             // toolStripSeparator1
             // 
@@ -105,7 +105,7 @@
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "&Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.OnDelete);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.OnProductDelete);
             // 
             // helpToolStripMenuItem
             // 
