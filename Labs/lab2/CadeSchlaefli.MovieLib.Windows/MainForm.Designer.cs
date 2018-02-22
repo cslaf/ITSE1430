@@ -83,27 +83,27 @@
             // 
             this._miMovieAdd.Name = "_miMovieAdd";
             this._miMovieAdd.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this._miMovieAdd.Size = new System.Drawing.Size(152, 22);
+            this._miMovieAdd.Size = new System.Drawing.Size(131, 22);
             this._miMovieAdd.Text = "&Add";
             this._miMovieAdd.Click += new System.EventHandler(this.OnMovieAdd);
             // 
             // _miMovieEdit
             // 
             this._miMovieEdit.Name = "_miMovieEdit";
-            this._miMovieEdit.Size = new System.Drawing.Size(152, 22);
+            this._miMovieEdit.Size = new System.Drawing.Size(131, 22);
             this._miMovieEdit.Text = "&Edit";
             this._miMovieEdit.Click += new System.EventHandler(this.OnMovieEdit);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
             // 
             // _miMovieDelete
             // 
             this._miMovieDelete.Name = "_miMovieDelete";
             this._miMovieDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this._miMovieDelete.Size = new System.Drawing.Size(152, 22);
+            this._miMovieDelete.Size = new System.Drawing.Size(131, 22);
             this._miMovieDelete.Text = "&Delete";
             this._miMovieDelete.Click += new System.EventHandler(this.OnMovieRemove);
             // 
@@ -118,7 +118,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnHelp);
             // 
@@ -130,6 +130,7 @@
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(350, 200);
             this.Name = "MainForm";
             this.Text = "Movie Library";
             this.menuStrip1.ResumeLayout(false);

@@ -20,7 +20,6 @@ namespace CadeSchlaefli.MovieLib.Windows
 
         protected override void OnLoad( EventArgs e )
         {
-            _movie = new Movie();
             base.OnLoad(e);
         }
 
@@ -43,29 +42,32 @@ namespace CadeSchlaefli.MovieLib.Windows
         private void OnMovieEdit( object sender, EventArgs e )
         {
             var form = new MovieDetailForm();
-            form.Text = "Add Movie";
-
-            //this no longer works?, maybe, make sure it's instansiated.
-            if (_movie.Title == "")
+            if (_movie == null)
             {
-                MessageBox.Show(this, "No Movie to Edit");
+                MessageBox.Show(this, "No Movie to edit");
                 return;
             }
 
-            form.ShowDialog();
+            form.Text = "Edit Movie";
+            form.Movie = _movie;
+            if (form.ShowDialog(this) == DialogResult.OK)
+                _movie = form.Movie;
         }
 
         private void OnMovieRemove( object sender, EventArgs e )
         {
-            if (_movie.Title == "")
-                MessageBox.Show(this, "No Movie to Edit");
+            if (_movie == null)
+                MessageBox.Show(this, "No Movie to delete");
             else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
-                _movie = new Movie();
+                _movie = null;
                 
         }
 
         private void OnHelp( object sender, EventArgs e )
         {
+            var about = new AboutBox();
+
+            about.Show();
 
         }
         private bool ShowConfirmation( string message, string title )

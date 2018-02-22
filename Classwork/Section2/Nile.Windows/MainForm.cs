@@ -36,14 +36,15 @@ namespace Nile.Windows
 
         private void OnProductAdd( object sender, EventArgs e )
         {
-            var form = new ProductDetailForm();
-            form.Text = "Add Product";
+            var form = new ProductDetailForm("Add Product");
+            //form.Text = "Add Product";
             //modal form
             if (form.ShowDialog() != DialogResult.OK)
                 return;
             //add product
             _product = form.Product;
         }
+
 
         private void OnExit( object sender, EventArgs e )
         {
@@ -56,8 +57,8 @@ namespace Nile.Windows
             if (_product == null)
                 return;
 
-            var form = new ProductDetailForm();
-            form.Text = "Edit Product";
+            var form = new ProductDetailForm("Edit Product");
+           //form.Text = "Edit Product";
             form.Product = _product;
             //modal form
             if (form.ShowDialog() != DialogResult.OK)

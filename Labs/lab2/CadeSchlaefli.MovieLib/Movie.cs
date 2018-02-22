@@ -25,7 +25,7 @@ namespace CadeSchlaefli.MovieLib
             if (String.IsNullOrEmpty(Title))
                 return "Title cannot be empty";
             if (Length < 0)
-                return "Price must be >= 0";
+                return "Length must be empty or >= 0";
             return "";
         }
 

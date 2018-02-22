@@ -16,7 +16,13 @@ namespace Nile.Windows
         {
             InitializeComponent();
         }
-        
+
+        public ProductDetailForm( string title) 
+        {
+            InitializeComponent();
+
+            Text = title;
+        }
         public Product Product { get; set; }
 
         protected override void OnLoad( EventArgs e )
