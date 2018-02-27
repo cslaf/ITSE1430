@@ -1,0 +1,8 @@
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\bin\Debug\Nile.Data.Memory.dll
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\bin\Debug\Nile.Data.Memory.pdb
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\bin\Debug\Nile.dll
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\bin\Debug\Nile.pdb
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.csprojResolveAssemblyReference.cache
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.csproj.CoreCompileInputs.cache
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.dll
+C:\Users\cade.schlaefli339\source\repos\ITSE1430\Classwork\Section3\Nile.Data.Memory\obj\Debug\Nile.Data.Memory.pdb
