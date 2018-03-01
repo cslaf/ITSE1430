@@ -9,7 +9,10 @@ namespace Nile.Data.Memory
     /// <summary> Storage for Producst in memory</summary>
     public class MemoryProductDatabase
     {
+        //test
         private List<Product> _products = new List<Product>();
+
+
 
         public List<Product> GetAll() { return _products; }
 

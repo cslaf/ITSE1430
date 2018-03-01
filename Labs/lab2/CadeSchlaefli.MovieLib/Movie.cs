@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ * Author: Cade Schlaefli
+ * Course: ITSE-1430-21722
+ * Date: 2/28/2018
+ * 
+ * 
+ * 
+*/
 
 namespace CadeSchlaefli.MovieLib
 {
