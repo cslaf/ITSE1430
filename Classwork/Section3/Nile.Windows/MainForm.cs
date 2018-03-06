@@ -23,6 +23,7 @@ namespace Nile.Windows
             base.OnLoad(e);
 
             RefreshUI();
+
         }
 
         private void RefreshUI()
@@ -33,6 +34,14 @@ namespace Nile.Windows
             dataGridView1.DataSource = products;
         }
 
+
+        private Product GetSelectedProduct()
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+                return dataGridView1.SelectedRows[0].DataBoundItem as Product;
+
+            return null;
+        }
         private void OnProductAdd( object sender, EventArgs e )
         {
             var form = new ProductDetailForm("Add Product");
@@ -44,6 +53,7 @@ namespace Nile.Windows
             _database.Add(form.Product, out var message);
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
+            RefreshUI();
            
         }
 
@@ -56,35 +66,37 @@ namespace Nile.Windows
 
         private void OnProductEdit( object sender, EventArgs e )
         {
-            var products = _database.GetAll();
-            var product = (products.Count > 0) ? products[0] : null;
+            var product = GetSelectedProduct();
             if (product == null)
                 return;
 
 
             var form = new ProductDetailForm(product);
-            form.Text = "Edit Product";
-           //form.Text = "Edit Product";
-            form.Product = product;
+            var result = form.ShowDialog(this);
             //modal form
-            _database.Edit(form.Product, out var message);
-            if (form.ShowDialog() != DialogResult.OK)
+
+            if (result != DialogResult.OK)
                 return;
+
+            form.Product.Id = product.Id;
             //add product
-            product = form.Product;
+            _database.Edit(form.Product, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+            RefreshUI();
         }
 
         private void OnProductDelete( object sender, EventArgs e )
         {
-            var products = _database.GetAll();
-            var product = (products.Count > 0) ? products[0] : null;
+            var product = GetSelectedProduct();
             if (product == null)
                 return;
             
-            if (ShowConfirmation("Are you sure?", "Remove product"))
+            if (!ShowConfirmation("Are you sure?", "Remove product"))
                 return;
 
             _database.Remove(product.Id);
+            RefreshUI();
         }
 
         private void OnAbout( object sender, EventArgs e )

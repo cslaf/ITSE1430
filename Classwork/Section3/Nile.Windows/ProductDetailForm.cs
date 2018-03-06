@@ -24,14 +24,11 @@ namespace Nile.Windows
             Text = title;
         }
 
-        public ProductDetailForm(Product product )
+        public ProductDetailForm(Product product ) :this("Edit Product")
         {
-
-            _txtName.Text = Product.Name;
-            _txtDescription.Text = Product.Description;
-            _txtPrice.Text = Product.Price.ToString();
-            _chkDiscontinued.Checked = Product.IsDiscontinued;
+            Product = product;
         }
+        
         public Product Product { get; set; }
 
         protected override void OnLoad( EventArgs e )
@@ -55,12 +52,15 @@ namespace Nile.Windows
 
         private void OnSave( object sender, EventArgs e )
         {
-            Product product = new Product();
-            product.Name = _txtName.Text;
-            product.Description = _txtDescription.Text;
-            product.Price = ConvertToPrice(_txtPrice);
-            product.IsDiscontinued = _chkDiscontinued.Checked;
+            if (!ValidateChildren())
+                return;
 
+            Product product = new Product() {
+            Name = _txtName.Text,
+            Description = _txtDescription.Text,
+            Price = ConvertToPrice(_txtPrice),
+            IsDiscontinued = _chkDiscontinued.Checked,
+        };
             Product = product;
 
             DialogResult = DialogResult.OK;

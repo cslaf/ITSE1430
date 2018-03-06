@@ -65,7 +65,7 @@ namespace CadeSchlaefli.MovieLib.Windows
 
         private void OnHelp( object sender, EventArgs e )
         {
-            var about = new AboutBox();
+            var about = new AboutBox1();
 
             about.Show();
 

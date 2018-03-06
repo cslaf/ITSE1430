@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,14 +8,12 @@ using System.Threading.Tasks;
 namespace Nile
 {
     /// <summary>Provides info about a product.</summary>
-    public class Product
+    public class Product : IValidatableObject
     {
         internal decimal DiscountPercentage = 0.10M;
         private string _name;
         /// <summary>Gets or sets product ID. </summary>
         public int Id { get; set; }
-
-        //used auto-props for all these,
 
         /// <summary>Name of the product. </summary>
         public string Name
@@ -46,11 +45,19 @@ namespace Nile
             return "";
         }
 
-/*        public int ShowingOffAcessibility
+        public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
         {
-            get { return 12; }
-            internal set { }
-        }*/
+            var errors = new List<ValidationResult>();
 
+            if (String.IsNullOrEmpty(Name))
+                errors.Add(new ValidationResult("Title cannot be empty",
+                    new[] {"Name" }));
+            if (Price < 0)
+               errors.Add(new ValidationResult("Price must be >= 0",
+                   new[] { "Price" }));
+
+            return errors;
+
+        }
     }
 }
