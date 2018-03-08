@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Nile.Data;
 using Nile.Data.Memory;
 
 namespace Nile.Windows
@@ -31,7 +32,7 @@ namespace Nile.Windows
             var products = _database.GetAll();
 
             //bind to grid
-            dataGridView1.DataSource = products;
+            dataGridView1.DataSource = new List<Product>(products);
         }
 
 
@@ -80,7 +81,7 @@ namespace Nile.Windows
 
             form.Product.Id = product.Id;
             //add product
-            _database.Edit(form.Product, out var message);
+            _database.Update(form.Product, out var message);
             if (!String.IsNullOrEmpty(message))
                 MessageBox.Show(message);
             RefreshUI();
@@ -109,6 +110,6 @@ namespace Nile.Windows
             return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
 
-        private MemoryProductDatabase _database = new MemoryProductDatabase();
+        private IProductDatabase _database = new MemoryProductDatabase();
     }
 }

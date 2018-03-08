@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nile.Data.Memory
+namespace Nile.Data.Memory 
 {
     /// <summary> Storage for Producst in memory</summary>
-    public class MemoryProductDatabase
+    public class MemoryProductDatabase : ProductDatabase
     {
         //test
         private List<Product> _products = new List<Product>();
         private int _nextId = 1;
+
 
         public MemoryProductDatabase()
         {
@@ -40,35 +41,27 @@ namespace Nile.Data.Memory
             };
         }
 
-        public Product[] GetAll()
-        {
-            List<Product> output = new List<Product>();
+        //public IEnumerable<Product> GetAll()
+        //{
+        //    var output = new List<Product>();
 
+        //    foreach (var product in _products)
+        //        output.Add(Clone(product));
+        //    return output;}
+
+
+       protected override IEnumerable<Product> GetAllCore()
+        {
             foreach (var product in _products)
-                output.Add(Clone(product));
-            return output.ToArray();
+            {
+                if(product != null)
+                    yield return Clone(product);
+            }
         }
 
-        public Product Add( Product product, out string message )
+        protected override Product AddCore( Product product )
         {
-            if(product == null)
-            {
-                message = "Product cannot be null";
-                return null;
-            }
 
-            var errors = ObjectValidator.Validate(product);
-            if(errors.Count() > 0)
-            {
-                message = errors.ElementAt(0).ErrorMessage;
-            }
-
-            //TODO: verify unique product
-
-            
-
-            message = null;
-            //cloned
             product.Id = _nextId++;
             _products.Add(Clone(product));
             return product;
@@ -82,7 +75,7 @@ namespace Nile.Data.Memory
             return newProduct;
         }
 
-        public Product Edit( Product product, out string message )
+        public Product Update( Product product, out string message )
         {
             if (product == null)
             {
@@ -97,9 +90,14 @@ namespace Nile.Data.Memory
                 return null;
             }
 
-            //TODO: verify unique product except current
+            var existing = GetProductByName(product.Name);
+            if(existing != null && existing.Id != product.Id)
+            {
+                message = "Product Already Exists";
+                return null;
+            }
 
-            var existing = GetById(product.Id);
+            existing = existing ?? GetById(product.Id);
             if(existing == null)
             {
                 message = "Product not found";
@@ -134,7 +132,7 @@ namespace Nile.Data.Memory
             }
         }
 
-        private Product GetById (int id )
+        protected override Product GetCore (int id )
         {
             foreach (var product in _products)
             {
@@ -156,6 +154,17 @@ namespace Nile.Data.Memory
 
         }
 
+        private Product GetProductByName(string name )
+        {
+            foreach (var product in _products)
+            {
+                //product.Name.CompareTo
+                if (String.Compare(product.Name, name, true) ==0 )
+                    return product;
 
+            }
+            return null;
+
+        }
     }
 }

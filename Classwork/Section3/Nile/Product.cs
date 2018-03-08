@@ -51,11 +51,11 @@ namespace Nile
 
             if (String.IsNullOrEmpty(Name))
                 errors.Add(new ValidationResult("Title cannot be empty",
-                    new[] {"Name" }));
+                   new[] { nameof(Name) }));
             if (Price < 0)
                errors.Add(new ValidationResult("Price must be >= 0",
-                   new[] { "Price" }));
-
+                   new[] { nameof(Price) }));
+            
             return errors;
 
         }
