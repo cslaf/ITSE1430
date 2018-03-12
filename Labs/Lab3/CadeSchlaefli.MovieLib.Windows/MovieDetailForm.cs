@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Author: Cade Schlaefli
+ * Course: ITSE-1430-21722
+ * Date: 3/11/2018
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace CadeSchlaefli.MovieLib.Windows
 {
@@ -17,6 +23,16 @@ namespace CadeSchlaefli.MovieLib.Windows
         public MovieDetailForm()
         {
             InitializeComponent();
+        }
+
+        public MovieDetailForm( string title ) : this()
+        {
+            Text = title;
+        }
+
+        public MovieDetailForm(Movie movie) :this("Edit Movie")
+        {
+            Movie = movie;
         }
 
         protected override void OnLoad( EventArgs e )
@@ -52,11 +68,11 @@ namespace CadeSchlaefli.MovieLib.Windows
             movie.Length = ConvertToLength(_txtLength);
             movie.IsOwned = _chkboxOwned.Checked;
 
-            var message = movie.Validate();
+            var errors = ObjectValidator.Validate(movie);
 
-            if (!String.IsNullOrEmpty(message))
+            if (errors.Count() > 0)
             {
-                MessageBox.Show(this, movie.Validate(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, errors.ElementAt(0).ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             } 
 

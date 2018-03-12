@@ -1,22 +1,21 @@
-﻿using System;
+﻿/*
+ * Author: Cade Schlaefli
+ * Course: ITSE-1430-21722
+ * Date: 3/11/2018
+*/
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/*
- * Author: Cade Schlaefli
- * Course: ITSE-1430-21722
- * Date: 2/28/2018
- * 
- * 
- * 
-*/
 
 namespace CadeSchlaefli.MovieLib
 {
     /// <summary>Provides info about a movie. </summary>
-    public class Movie
+    public class Movie : IValidatableObject
     {
+        public int Id { get; set; }
         /// <summary>Title of the Movie. </summary>
         public string Title { get; set; } = "";
         /// <summary>Description of the Movie. </summary>
@@ -35,6 +34,23 @@ namespace CadeSchlaefli.MovieLib
             if (Length < 0)
                 return "Length must be empty or >= 0";
             return "";
+        }
+        /// <summary>
+        /// Validate the Product.
+        /// </summary>
+        /// <param name="validationContext">The validation context</param>
+        /// <returns>The validation results.</returns>
+        public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
+        {
+            var errors = new List<ValidationResult>();
+
+            if (String.IsNullOrEmpty(Title))
+                errors.Add(new ValidationResult("Title cannot be empty", new[] { nameof(Title) }));
+
+            if (Length < 0)
+                errors.Add(new ValidationResult("Length must be <= 0", new[] { nameof(Length) }));
+
+            return errors;
         }
 
     }

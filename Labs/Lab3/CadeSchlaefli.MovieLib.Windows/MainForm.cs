@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Author: Cade Schlaefli
+ * Course: ITSE-1430-21722
+ * Date: 3/11/2018
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,12 +12,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CadeSchlaefli.MovieLib.Data;
+using CadeSchlaefli.MovieLib.Data.Memory;
 
 namespace CadeSchlaefli.MovieLib.Windows
 {
     public partial class MainForm : Form
     {
-        Movie _movie;
+        private MovieDatabase _database = new MemoryMovieDatabase();
+
         public MainForm()
         {
             InitializeComponent();
@@ -21,6 +29,23 @@ namespace CadeSchlaefli.MovieLib.Windows
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
+
+            RefreshUI();
+        }
+
+        private void RefreshUI()
+        {
+            var movies = _database.GetAll();
+
+            dataGridView.DataSource = new List<Movie>(movies);
+        }
+
+        private Movie GetSelectedMovie()
+        {
+            if (dataGridView.SelectedRows.Count > 0)
+                return dataGridView.SelectedRows[0].DataBoundItem as Movie;
+
+            return null;
         }
 
         private void OnExit( object sender, EventArgs e )
@@ -31,36 +56,25 @@ namespace CadeSchlaefli.MovieLib.Windows
 
         private void OnMovieAdd( object sender, EventArgs e )
         {
-            var form = new MovieDetailForm();
-            form.Text = "Add Movie";
+            var form = new MovieDetailForm("Add Movie");
             if (form.ShowDialog(this) != DialogResult.OK)
                 return;
+            _database.Add(form.Movie, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
 
-            _movie = form.Movie;
+            RefreshUI();
+
         }
 
         private void OnMovieEdit( object sender, EventArgs e )
         {
-            var form = new MovieDetailForm();
-            if (_movie == null)
-            {
-                MessageBox.Show(this, "No Movie to edit");
-                return;
-            }
-
-            form.Text = "Edit Movie";
-            form.Movie = _movie;
-            if (form.ShowDialog(this) == DialogResult.OK)
-                _movie = form.Movie;
+            EditSelectedMovie();
         }
 
         private void OnMovieRemove( object sender, EventArgs e )
         {
-            if (_movie == null)
-                MessageBox.Show(this, "No Movie to delete");
-            else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
-                _movie = null;
-                
+            RemoveSelectedMovie();
         }
 
         private void OnHelp( object sender, EventArgs e )
@@ -73,6 +87,54 @@ namespace CadeSchlaefli.MovieLib.Windows
         private bool ShowConfirmation( string message, string title )
         {
             return MessageBox.Show(this, message, title, MessageBoxButtons.YesNo) == DialogResult.Yes;
+        }
+        
+        private void RemoveSelectedMovie()
+        {
+            var movie = GetSelectedMovie();
+
+            if (movie == null)
+                return; //MessageBox.Show(this, "No Movie to delete");
+            else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
+                _database.Remove(movie.Id);
+
+            RefreshUI();
+
+        }
+
+        private void EditSelectedMovie()
+        {
+            var movie = GetSelectedMovie();
+            if (movie == null)
+                return;
+
+            var form = new MovieDetailForm(movie);
+
+            if (form.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            //update product
+            form.Movie.Id = movie.Id;
+            _database.Update(form.Movie, out var message);
+            if (!String.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+
+            RefreshUI();
+        }
+
+        private void dataGridView_CellDoubleClick( object sender, DataGridViewCellEventArgs e )
+        {
+            if(e.RowIndex != -1)
+                EditSelectedMovie();
+        }
+
+
+        private void dataGridView_KeyDown( object sender, KeyEventArgs e )
+        {
+            if (e.KeyCode == Keys.Enter)
+                EditSelectedMovie();
+            if (e.KeyCode == Keys.Delete)
+                RemoveSelectedMovie();
         }
     }
 }

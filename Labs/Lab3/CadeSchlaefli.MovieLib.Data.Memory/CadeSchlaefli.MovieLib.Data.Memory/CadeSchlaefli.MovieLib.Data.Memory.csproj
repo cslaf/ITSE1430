@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{91683230-F52B-4D79-BD6B-7DEED5B84752}</ProjectGuid>
+    <ProjectGuid>{7E5E4A95-FD95-4111-A850-04871B083845}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CadeSchlaefli.MovieLib</RootNamespace>
-    <AssemblyName>CadeSchlaefli.MovieLib</AssemblyName>
+    <RootNamespace>CadeSchlaefli.MovieLib.Data.Memory</RootNamespace>
+    <AssemblyName>CadeSchlaefli.MovieLib.Data.Memory</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,11 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\IMovieDatabase.cs" />
-    <Compile Include="Data\MovieDatabase.cs" />
-    <Compile Include="Movie.cs" />
-    <Compile Include="ObjectValidator.cs" />
+    <Compile Include="MemoryMovieDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CadeSchlaefli.MovieLib\CadeSchlaefli.MovieLib.csproj">
+      <Project>{91683230-f52b-4d79-bd6b-7deed5b84752}</Project>
+      <Name>CadeSchlaefli.MovieLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

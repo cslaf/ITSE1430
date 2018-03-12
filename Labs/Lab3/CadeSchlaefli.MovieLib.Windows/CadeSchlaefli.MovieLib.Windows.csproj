@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -83,6 +84,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\AboutBox1.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.Data.Memory.MemoryMovieDatabase.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.Data.MovieDatabase.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.Movie.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.ObjectValidator.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.Windows.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\CadeSchlaefli.MovieLib.Windows.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
+    <None Include="Properties\DataSources\MovieDetailForm.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +108,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CadeSchlaefli.MovieLib.Data.Memory\CadeSchlaefli.MovieLib.Data.Memory\CadeSchlaefli.MovieLib.Data.Memory.csproj">
+      <Project>{7e5e4a95-fd95-4111-a850-04871b083845}</Project>
+      <Name>CadeSchlaefli.MovieLib.Data.Memory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CadeSchlaefli.MovieLib\CadeSchlaefli.MovieLib.csproj">
       <Project>{91683230-f52b-4d79-bd6b-7deed5b84752}</Project>
       <Name>CadeSchlaefli.MovieLib</Name>
