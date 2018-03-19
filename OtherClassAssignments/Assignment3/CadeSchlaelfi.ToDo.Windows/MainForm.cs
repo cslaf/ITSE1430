@@ -18,20 +18,17 @@ namespace CadeSchlaelfi.ToDo.Windows
             InitializeComponent();
         }
 
-        
+
 
         //reads and writes to save file
-        private void WriteToFile(string location)
+        private void RefreshUI()
         {
+            if (hidingCompleted)
+                hideCompleted();
             return;
-        }
-
-        private List<ToDoItem> ReadFromFile(string location )
-        {
-            return null;
 
         }
-    
+
 
         private void dataGridView1_CellValidating( object sender, DataGridViewCellValidatingEventArgs e )
         {
@@ -59,10 +56,6 @@ namespace CadeSchlaelfi.ToDo.Windows
                     "Date is invalid";
                 e.Cancel = true;
             }
-
-
-
-
         }
 
         private void exitToolStripMenuItem_Click( object sender, EventArgs e )
@@ -73,6 +66,8 @@ namespace CadeSchlaelfi.ToDo.Windows
         private void dataGridView1_CellEndEdit( object sender, DataGridViewCellEventArgs e )
         {
             dataGridView1.Rows[e.RowIndex].ErrorText = String.Empty;
+
+            RefreshUI();
         }
 
         private void MainForm_Load( object sender, EventArgs e )
@@ -120,20 +115,43 @@ namespace CadeSchlaelfi.ToDo.Windows
                 toLoad.Load(loadInput.FileName);
             
         }
+
+        private void hideCompleted()
+        {
+            
+            var index = dataGridView1?.CurrentRow?.Index;
+
+            index = index ?? -1;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[5].Value is bool && (bool)row.Cells[5].Value && hidingCompleted && row.Index != index)
+                {
+                    row.Visible = false;
+                } 
+                else
+                if(!hidingCompleted)
+                    row.Visible = true;
+            }
+        }
+
         private bool hidingCompleted = false;
         private void hideCompletedItemsToolStripMenuItem_Click( object sender, EventArgs e )
         {
             hidingCompleted = !hidingCompleted;
 
             dataGridView1.CurrentCell = null;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells[5].Value is bool && (bool)row.Cells[5].Value && hidingCompleted)
-                {
-                    row.Visible = false;
-                } else
-                    row.Visible = true;
-            }
+            hideCompleted();
+        }
+
+        private void dataGridView1_RowLeave( object sender, DataGridViewCellEventArgs e )
+        {
+            RefreshUI();
+        }
+
+        private void dataGridView1_RowEnter( object sender, DataGridViewCellEventArgs e )
+        {
+            RefreshUI();
         }
     }
 }
