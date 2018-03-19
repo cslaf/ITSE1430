@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CadeSchlaefli.MovieLib
 {
-    /// <summary>Provides info about a movie. </summary>
+    /// <summary>Provides info about a Movie. </summary>
     public class Movie : IValidatableObject
     {
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace CadeSchlaefli.MovieLib
         public string Description { get; set; }
         /// <summary>Length of the Movie in Minutes. </summary>
         public int Length { get; set; }
-        /// <summary>If the movie is owned. </summary>
+        /// <summary>If the Movie is owned. </summary>
         public bool IsOwned { get; set; }
 
         /// <summary>Checks input to see if valid</summary>
@@ -35,9 +35,7 @@ namespace CadeSchlaefli.MovieLib
                 return "Length must be empty or >= 0";
             return "";
         }
-        /// <summary>
-        /// Validate the Product.
-        /// </summary>
+        /// <summary>Validate the Movie.</summary>
         /// <param name="validationContext">The validation context</param>
         /// <returns>The validation results.</returns>
         public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )
