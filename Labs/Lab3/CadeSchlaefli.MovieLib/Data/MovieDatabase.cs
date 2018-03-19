@@ -93,14 +93,14 @@ namespace CadeSchlaefli.MovieLib.Data
 
             if( existing != null && existing.Id != movie.Id)
             {
-                message = "Product already exists.";
+                message = "Movie already exists.";
                 return null;
             }
 
             existing = existing ?? GetCore(movie.Id);
             if(existing == null)
             {
-                message = "Product not found";
+                message = "Movie not found";
                 return null;
             }
 
