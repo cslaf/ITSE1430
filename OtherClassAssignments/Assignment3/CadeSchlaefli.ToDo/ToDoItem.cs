@@ -1,8 +1,3 @@
-﻿/*
- * Author: Cade Schlaefli
- * Course: ITSE-1430-21722
- * Date: 3/11/2018
-*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
