@@ -1,8 +1,3 @@
-﻿/*
- * Author: Cade Schlaefli
- * Course: ITSE-1430-21722
- * Date: 3/11/2018
-*/
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +11,7 @@ namespace CadeSchlaefli.ToDo
     /// <summary> Provides support for data validation </summary>
     public static class ObjectValidator
     {
+        //takes an object with IvalidatableObject Implemented and validates it
         public static IEnumerable<ValidationResult> Validate (object value )
         {
             var context = new ValidationContext(value);
