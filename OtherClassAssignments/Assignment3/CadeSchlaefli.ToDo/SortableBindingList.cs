@@ -1,4 +1,8 @@
-﻿using System;
+/*﻿
+Based on
+msdn.microsoft.com/en-us/library/ms993236.aspx
+*/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
