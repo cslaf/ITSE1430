@@ -14,7 +14,6 @@ namespace Nile.Data.Memory
         private List<Product> _products = new List<Product>();
         private int _nextId = 1;
 
-
         public MemoryProductDatabase()
         {
             _products = new List<Product>() {
@@ -41,16 +40,7 @@ namespace Nile.Data.Memory
             };
         }
 
-        //public IEnumerable<Product> GetAll()
-        //{
-        //    var output = new List<Product>();
-
-        //    foreach (var product in _products)
-        //        output.Add(Clone(product));
-        //    return output;}
-
-
-       protected override IEnumerable<Product> GetAllCore()
+        protected override IEnumerable<Product> GetAllCore()
         {
             foreach (var product in _products)
             {
@@ -75,38 +65,12 @@ namespace Nile.Data.Memory
             return newProduct;
         }
 
-        public Product Update( Product product, out string message )
+        protected override Product UpdateCore( Product product)
         {
-            if (product == null)
-            {
-                message = "Product cannot be null";
-                return null;
-            }
 
-            var error = product.Validate();
-            if (!String.IsNullOrEmpty(error))
-            {
-                message = error;
-                return null;
-            }
-
-            var existing = GetProductByName(product.Name);
-            if(existing != null && existing.Id != product.Id)
-            {
-                message = "Product Already Exists";
-                return null;
-            }
-
-            existing = existing ?? GetById(product.Id);
-            if(existing == null)
-            {
-                message = "Product not found";
-               return null;
-            }
+            var existing = GetCore(product.Id);
 
             Copy(existing, product); 
-
-            message = null;
                 
             return product;
 
@@ -122,14 +86,11 @@ namespace Nile.Data.Memory
 
         }
 
-        public void Remove(int id )
+        protected override void RemoveCore(int id )
         {
-            if (id > 0)
-            {
-                var toDel = GetById(id);
-                if(toDel != null)
-                    _products.Remove(toDel);
-            }
+           var toDel = GetCore(id);
+           if(toDel != null)
+           _products.Remove(toDel);
         }
 
         protected override Product GetCore (int id )
@@ -138,23 +99,11 @@ namespace Nile.Data.Memory
             {
                 if (product.Id == id)
                     return product;
-
             }
             return null;
-
-            //Product result = _products.Find(delegate ( Product prod ) { return prod.Id == id; });
-            
-            //if( result != null)
-            //{
-            //    return result;
-            //} else
-            //{
-            //    return null;
-            //}
-
         }
 
-        private Product GetProductByName(string name )
+        protected override Product GetCore(string name )
         {
             foreach (var product in _products)
             {
