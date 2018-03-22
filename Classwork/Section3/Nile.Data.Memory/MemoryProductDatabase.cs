@@ -14,32 +14,6 @@ namespace Nile.Data.Memory
         private List<Product> _products = new List<Product>();
         private int _nextId = 1;
 
-        public MemoryProductDatabase()
-        {
-            _products = new List<Product>() {
-
-            new Product() {
-                Id = _nextId++,
-                Name = "iPhone X",
-                IsDiscontinued = true,
-                Price = 1500
-            },
-            new Product() {
-                Id = _nextId++,
-                Name = "Windows Phone",
-                IsDiscontinued = true,
-                Price = 15
-            },
-                new Product() {
-                Id = _nextId++,
-                Name = "Samsung S8",
-                IsDiscontinued = false,
-                Price = 800
-            }
-
-            };
-        }
-
         protected override IEnumerable<Product> GetAllCore()
         {
             foreach (var product in _products)

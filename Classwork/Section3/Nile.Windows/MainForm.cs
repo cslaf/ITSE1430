@@ -23,6 +23,8 @@ namespace Nile.Windows
         {
             base.OnLoad(e);
 
+            _database.Seed();
+
             RefreshUI();
 
         }
@@ -32,7 +34,7 @@ namespace Nile.Windows
             var products = _database.GetAll();
 
             //bind to grid
-            productBindingSource.DataSource = new List<Product>(products);
+            productBindingSource.DataSource = Enumerable.ToList(products);
         }
 
 

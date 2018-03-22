@@ -37,7 +37,7 @@ namespace CadeSchlaefli.MovieLib.Windows
         {
             var movies = _database.GetAll();
 
-            dataGridView.DataSource = new List<Movie>(movies);
+            dataGridView.DataSource = movies.ToList();
         }
 
         private Movie GetSelectedMovie()
@@ -94,8 +94,10 @@ namespace CadeSchlaefli.MovieLib.Windows
             var movie = GetSelectedMovie();
 
             if (movie == null)
-                return; //MessageBox.Show(this, "No Movie to delete");
-            else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
+            {
+                MessageBox.Show(this, "No Movie to delete");
+                return;
+            } else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
                 _database.Remove(movie.Id);
 
             RefreshUI();
@@ -132,9 +134,16 @@ namespace CadeSchlaefli.MovieLib.Windows
         private void dataGridView_KeyDown( object sender, KeyEventArgs e )
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 EditSelectedMovie();
+                e.Handled = true;
+            }
             if (e.KeyCode == Keys.Delete)
+            {
                 RemoveSelectedMovie();
+                e.Handled = true;
+            }
+
         }
     }
 }

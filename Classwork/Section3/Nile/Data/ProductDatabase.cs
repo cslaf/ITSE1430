@@ -25,9 +25,11 @@ namespace Nile.Data
             }
 
             var errors = ObjectValidator.Validate(product);
-            if(errors.Count() > 0)
+            var error = Enumerable.FirstOrDefault(errors);
+            if(error != null)
             {
-                message = errors.ElementAt(0).ErrorMessage;
+                message = error.ErrorMessage;
+                return null;
             }
 
             // verify unique product

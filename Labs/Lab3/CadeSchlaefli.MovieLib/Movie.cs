@@ -25,16 +25,6 @@ namespace CadeSchlaefli.MovieLib
         /// <summary>If the Movie is owned. </summary>
         public bool IsOwned { get; set; }
 
-        /// <summary>Checks input to see if valid</summary>
-        /// <returns>Error message or ""</returns>
-        public string Validate()
-        {
-            if (String.IsNullOrEmpty(Title))
-                return "Title cannot be empty";
-            if (Length < 0)
-                return "Length must be empty or >= 0";
-            return "";
-        }
         /// <summary>Validate the Movie.</summary>
         /// <param name="validationContext">The validation context</param>
         /// <returns>The validation results.</returns>

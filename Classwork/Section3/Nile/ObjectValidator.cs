@@ -18,6 +18,5 @@ namespace Nile
             Validator.TryValidateObject(value, context, errors, true);
             return errors;
         }
-
     }
 }

@@ -64,7 +64,7 @@ namespace CadeSchlaefli.MovieLib.Data
             var existing = GetCore(movie.Title);
             if(existing != null)
             {
-                message = "Product already exists.";
+                message = "Movie already exists.";
                 return null;
             }
 
@@ -80,11 +80,12 @@ namespace CadeSchlaefli.MovieLib.Data
                 return null;
             }
 
-            var errors = ObjectValidator.Validate(movie);
-            if(errors.Count() > 0)
+            var errors = movie.Validate();
+            var error = errors.FirstOrDefault();
+            if(errors != null)
             {
                 //return first error
-                message = errors.ElementAt(0).ErrorMessage;
+                message = error.ErrorMessage;
                 return null;
             }
             
