@@ -32,12 +32,31 @@ namespace Nile.Windows
 
         }
 
+        protected void errorHandling()
+        {
+            try
+            {
+                //do something with database calls
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+
         private void RefreshUI()
         {
-            var products = _database.GetAll();
+            IEnumerable<Product> products = null;
+            try
+            {
+                products = _database.GetAll();
+            } catch (Exception)
+            {
+                MessageBox.Show("Error loading products");
+            };
 
             //bind to grid
-            productBindingSource.DataSource = Enumerable.ToList(products);
+            productBindingSource.DataSource = products?.ToList();
         }
 
 
@@ -55,10 +74,8 @@ namespace Nile.Windows
             //modal form
             if (form.ShowDialog() != DialogResult.OK)
                 return;
-            //add product
-            _database.Add(form.Product, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+            //add product, add try catch
+            _database.Add(form.Product);
             RefreshUI();
            
         }
@@ -85,10 +102,8 @@ namespace Nile.Windows
                 return;
 
             form.Product.Id = product.Id;
-            //add product
-            _database.Update(form.Product, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+            //add product add try catch
+            _database.Update(form.Product);
             RefreshUI();
         }
 

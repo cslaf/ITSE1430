@@ -16,64 +16,35 @@ namespace Nile.Data
             return GetAllCore();
         }
 
-        public Product Add( Product product, out string message )
+        public Product Add( Product product)
         {
-            if(product == null)
-            {
-                message = "Product cannot be null";
-                return null;
-            }
 
-            var errors = ObjectValidator.Validate(product);
-            var error = Enumerable.FirstOrDefault(errors);
-            if(error != null)
-            {
-                message = error.ErrorMessage;
-                return null;
-            }
+            product = product ?? throw new ArgumentNullException(nameof(product));
+            //if (product == null)
+            //    throw new ArgumentNullException(nameof(product));
+            product.Validate();
 
             // verify unique product
             var existing = GetCore(product.Name);
             if(existing != null)
-            {
-                message = "Product Already Exists";
-                return null;
-            }
+                throw new Exception("Product already exsists");
 
-            message = null;
             return AddCore(product);
         }
 
-        public Product Update( Product product, out string message )
+        public Product Update( Product product)
         {
             if (product == null)
-            {
-                message = "Product cannot be null";
-                return null;
-            }
-
-            var error = product.Validate();
-            if (!String.IsNullOrEmpty(error))
-            {
-                message = error;
-                return null;
-            }
+                throw new ArgumentNullException(nameof(product));
+            product.Validate();
 
             var existing = GetCore(product.Name);
-            if(existing != null && existing.Id != product.Id)
-            {
-                message = "Product Already Exists";
-                return null;
-            }
+            if (existing != null && existing.Id != product.Id)
+                throw new Exception("Product already exsists");                
 
             existing = existing ?? GetCore(product.Id);
-            if(existing == null)
-            {
-                message = "Product not found";
-               return null;
-            }
-
-            message = null;
+            if (existing == null)
+                throw new Exception("Product does not exsist");
 
             return UpdateCore(product);
 
@@ -81,10 +52,9 @@ namespace Nile.Data
 
         public void Remove(int id )
         {
-            if (id > 0)
-            {
-                RemoveCore(id);  
-            }
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be >=0");
+            RemoveCore(id);  
         }
 
         protected abstract Product AddCore( Product product );
