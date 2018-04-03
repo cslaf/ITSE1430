@@ -24,7 +24,7 @@ namespace Nile
         /// <summary>Description of the product. </summary>
         public string Description { get; set; }
         /// <summary>Price of Product in Dollars. </summary>
-        public decimal Price { get; set; }
+        public decimal Price { get; set; } = 0;
         /// <summary> If the product has been disconintued. </summary>
         public bool IsDiscontinued { get; set; }
         /// <summary> Gives a discounted price if Product IsDiscontinued </summary>
@@ -32,17 +32,6 @@ namespace Nile
         {
             get { return IsDiscontinued ? (Price * DiscountPercentage) : Price; }
             set { }
-        }
-
-        /// <summary>Checks input to see if valid</summary>
-        /// <returns>Error message or ""</returns>
-        public string Validate()
-        {
-            if (String.IsNullOrEmpty(Name))
-                return "Title cannot be empty";
-            if (Price < 0)
-                return "Price must be >= 0";
-            return "";
         }
 
         public IEnumerable<ValidationResult> Validate( ValidationContext validationContext )

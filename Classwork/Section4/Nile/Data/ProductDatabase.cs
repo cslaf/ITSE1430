@@ -13,7 +13,7 @@ namespace Nile.Data
 
         public IEnumerable<Product> GetAll()
         {
-            return GetAllCore();
+            return GetAllCore(); 
         }
 
         public Product Add( Product product)

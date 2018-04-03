@@ -54,13 +54,13 @@ namespace Nile.Windows
         {
             if (!ValidateChildren())
                 return;
-
             Product product = new Product() {
             Name = _txtName.Text,
             Description = _txtDescription.Text,
             Price = ConvertToPrice(_txtPrice),
             IsDiscontinued = _chkDiscontinued.Checked,
         };
+            
             Product = product;
 
             DialogResult = DialogResult.OK;
@@ -73,7 +73,7 @@ namespace Nile.Windows
             if (Decimal.TryParse(control.Text, out var price))
                 return price;
 
-            return -1;
+            return 0;
         }
     }
 }

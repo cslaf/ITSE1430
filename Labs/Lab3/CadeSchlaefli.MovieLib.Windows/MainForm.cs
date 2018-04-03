@@ -57,12 +57,14 @@ namespace CadeSchlaefli.MovieLib.Windows
         private void OnMovieAdd( object sender, EventArgs e )
         {
             var form = new MovieDetailForm("Add Movie");
-            if (form.ShowDialog(this) != DialogResult.OK)
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
             _database.Add(form.Movie, out var message);
             if (!String.IsNullOrEmpty(message))
+            {
                 MessageBox.Show(message);
-
+                OnMovieAdd(sender, e);
+            }
             RefreshUI();
 
         }
@@ -98,7 +100,7 @@ namespace CadeSchlaefli.MovieLib.Windows
                 MessageBox.Show(this, "No Movie to delete");
                 return;
             } else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
-                _database.Remove(movie.Id);
+            _database.Remove(movie.Id);
 
             RefreshUI();
 
@@ -112,15 +114,17 @@ namespace CadeSchlaefli.MovieLib.Windows
 
             var form = new MovieDetailForm(movie);
 
-            if (form.ShowDialog(this) != DialogResult.OK)
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
             //update product
             form.Movie.Id = movie.Id;
             _database.Update(form.Movie, out var message);
             if (!String.IsNullOrEmpty(message))
+            {
                 MessageBox.Show(message);
-
+                EditSelectedMovie();
+            }
             RefreshUI();
         }
 

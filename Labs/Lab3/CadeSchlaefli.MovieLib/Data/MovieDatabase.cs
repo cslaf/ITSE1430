@@ -82,7 +82,7 @@ namespace CadeSchlaefli.MovieLib.Data
 
             var errors = movie.Validate();
             var error = errors.FirstOrDefault();
-            if(errors != null)
+            if(error != null)
             {
                 //return first error
                 message = error.ErrorMessage;
