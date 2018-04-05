@@ -142,6 +142,7 @@ namespace Nile.Data.IO
             EnsureInitialized();
 
             return _items.FirstOrDefault(i => i.Id == id);
+
         }
         protected override Product GetCore( string name )
         {

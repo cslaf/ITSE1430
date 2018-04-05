@@ -62,10 +62,8 @@ namespace Nile.Windows
 
         private Product GetSelectedProduct()
         {
-            if (dataGridView1.SelectedRows.Count > 0)
-                return dataGridView1.SelectedRows[0].DataBoundItem as Product;
-
-            return null;
+            return (from r in dataGridView1.SelectedRows.OfType<DataGridViewRow>()
+                   select r.DataBoundItem as Product).FirstOrDefault();
         }
         private void OnProductAdd( object sender, EventArgs e )
         {

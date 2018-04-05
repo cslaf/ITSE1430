@@ -16,20 +16,17 @@ namespace Nile.Data.Memory
 
         protected override IEnumerable<Product> GetAllCore()
         {
-            foreach (var product in _products)
-            {
-                if(product != null)
-                    yield return Clone(product);
-            }
+            return from p in _products
+                   select Clone(p);
+
+            //return _products.Select(p => Clone(p));
         }
 
         protected override Product AddCore( Product product )
         {
-
             product.Id = _nextId++;
             _products.Add(Clone(product));
             return product;
-            
         }
 
         Product Clone (Product item )
@@ -41,11 +38,8 @@ namespace Nile.Data.Memory
 
         protected override Product UpdateCore( Product product)
         {
-
             var existing = GetCore(product.Id);
-
             Copy(existing, product); 
-                
             return product;
 
         }
@@ -57,7 +51,6 @@ namespace Nile.Data.Memory
             target.Description = source.Description;
             target.Price = source.Price;
             target.IsDiscontinued = source.IsDiscontinued;
-
         }
 
         protected override void RemoveCore(int id )
@@ -69,25 +62,19 @@ namespace Nile.Data.Memory
 
         protected override Product GetCore (int id )
         {
-            foreach (var product in _products)
-            {
-                if (product.Id == id)
-                    return product;
-            }
-            return null;
+            //return (from p in _products
+            //       where p.Id == id
+            //       select p).FirstOrDefault();
+
+            return _products.FirstOrDefault(e => e.Id == id);
         }
 
         protected override Product GetCore(string name )
         {
-            foreach (var product in _products)
-            {
-                //product.Name.CompareTo
-                if (String.Compare(product.Name, name, true) ==0 )
-                    return product;
-
-            }
-            return null;
-
+            var items = from p in _products
+                        where p.Name == name
+                        select p;
+            return items.FirstOrDefault(e => e.Name == name);
         }
     }
 }
