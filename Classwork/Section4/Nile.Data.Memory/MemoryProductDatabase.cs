@@ -17,7 +17,7 @@ namespace Nile.Data.Memory
         protected override IEnumerable<Product> GetAllCore()
         {
             return from p in _products
-                   select Clone(p);
+                   select Clone(p); 
 
             //return _products.Select(p => Clone(p));
         }
