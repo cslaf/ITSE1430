@@ -1,0 +1,1 @@
+input is in the root folder, you can open whatever file and save wherever using file dialogs.
