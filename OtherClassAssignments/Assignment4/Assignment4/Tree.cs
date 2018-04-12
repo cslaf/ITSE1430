@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using Assignment4;
-/// <summary>
-/// Taken from https://gist.github.com/yutopio/5643839
-/// </summary>
-/// 
+
 namespace Assignment4
 {
     public class Node<T>
