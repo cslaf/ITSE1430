@@ -74,7 +74,14 @@ namespace Nile.Windows
             if (form.ShowDialog() != DialogResult.OK)
                 return;
             //add product, add try catch
-            _database.Add(form.Product);
+            try
+            {
+                _database.Add(form.Product);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             RefreshUI();
            
         }
@@ -102,7 +109,13 @@ namespace Nile.Windows
 
             form.Product.Id = product.Id;
             //add product add try catch
-            _database.Update(form.Product);
+            try
+            {
+                _database.Update(form.Product);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             RefreshUI();
         }
 

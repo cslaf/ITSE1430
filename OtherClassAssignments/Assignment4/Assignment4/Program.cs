@@ -14,7 +14,7 @@ namespace Assignment4
         [STAThread]
         static void Main( string[] args )
         {
-            SortedSet<WordData> actuallyTree = new SortedSet<WordData>();
+            var actuallyTree = new AVLSelfBalance(); 
 
             char[] punctuation = { '.', '.', '!', '?', '(', ')' , ' ' };
 
@@ -32,7 +32,7 @@ namespace Assignment4
                 {
                     var toAdd = new WordData(word.ToLower().Trim(punctuation));
                     toAdd.lines.Add(lineNum);
-                    var existing = actuallyTree.FirstOrDefault(e => e.word.Equals(toAdd.word));
+                    var existing = actuallyTree.a
                     if (existing == null)
                         actuallyTree.Add(toAdd);
                     else
