@@ -28,11 +28,5 @@ namespace Assignment4
             throw new ArgumentNullException();
             
         }
-
-
-        public int CompareTo( T other )
-        {
-            throw new NotImplementedException();
-        }
     }
 }

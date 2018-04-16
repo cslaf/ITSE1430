@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BinaryTree;
 
 namespace Assignment4
 {
@@ -14,9 +15,9 @@ namespace Assignment4
         [STAThread]
         static void Main( string[] args )
         {
-            var actuallyTree = new AVLSelfBalance(); 
+            var actuallyTree = new BinaryTree<WordData>();
 
-            char[] punctuation = { '.', '.', '!', '?', '(', ')' , ' ' };
+            char[] punctuation = { '.', ',', ';', '!', '?', '(', ')' , ' ' };
 
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.FileName = "input.txt";
@@ -30,25 +31,30 @@ namespace Assignment4
                 var words = line.Split(' ');
                 foreach(var word in words)
                 {
-                    var toAdd = new WordData(word.ToLower().Trim(punctuation));
-                    toAdd.lines.Add(lineNum);
-                    var existing = actuallyTree.a
-                    if (existing == null)
-                        actuallyTree.Add(toAdd);
-                    else
-                        existing.lines.Add(lineNum);
+                    if (!String.IsNullOrEmpty(word))
+                    {
+                        var toAdd = new WordData(word.ToLower().Trim(punctuation));
+                        toAdd.lines.Add(lineNum);
+                        var existing = actuallyTree.FirstOrDefault(e => 0 == e?.CompareTo(toAdd));
+                        if (existing == null)
+                            actuallyTree.Add(toAdd);
+                        else
+                            existing.lines.Add(lineNum);
+                    }
                 }
             }
-            actuallyTree.Remove(new WordData(""));
             var toWrite = actuallyTree.Reverse();
             List<string> writeAllLines = new List<string>();
                
             foreach(var thing in toWrite)
             {
-                var toAdd = thing.word;
-                foreach (var line in thing.lines)
-                    toAdd += $" {line} ";
-                writeAllLines.Add(toAdd);
+                if (thing != null)
+                {
+                    var toAdd = thing.word;
+                    foreach (var line in thing.lines)
+                        toAdd += $" {line} ";
+                    writeAllLines.Add(toAdd);
+                }
             }
 
             var save = new SaveFileDialog();
