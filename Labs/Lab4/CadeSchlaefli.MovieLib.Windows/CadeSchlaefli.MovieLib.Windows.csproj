@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -108,6 +109,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CadeSchlaefli.Data.Sql\CadeSchlaefli.Data.Sql.csproj">
+      <Project>{6b3bec09-7e7a-4748-95a8-b634b6785918}</Project>
+      <Name>CadeSchlaefli.Data.Sql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CadeSchlaefli.MovieLib.Data.Memory\CadeSchlaefli.MovieLib.Data.Memory\CadeSchlaefli.MovieLib.Data.Memory.csproj">
       <Project>{7e5e4a95-fd95-4111-a850-04871b083845}</Project>
       <Name>CadeSchlaefli.MovieLib.Data.Memory</Name>

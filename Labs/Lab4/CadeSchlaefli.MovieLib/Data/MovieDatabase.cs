@@ -5,6 +5,7 @@
 */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,68 +45,42 @@ namespace CadeSchlaefli.MovieLib.Data
             return GetAllCore();
         }
 
-        public Movie Add (Movie movie, out string message )
+        public Movie Add (Movie movie)
         {
             //check if null
-            if(movie == null)
-            {
-                message = "Movie cannot be null,";
-                return null;
-            }
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
 
             var errors = ObjectValidator.Validate(movie);
             if(errors.Count() > 0)
-            {
-                //return first error
-                message = errors.ElementAt(0).ErrorMessage;
-                return null;
-            }
+                throw new ValidationException(errors.FirstOrDefault().ErrorMessage);
 
             var existing = GetCore(movie.Title);
-            if(existing != null)
-            {
-                message = "Movie already exists.";
-                return null;
-            }
+            if (existing != null)
+                throw new ArgumentException("Movie already exists", nameof(movie));
 
-            message = null;
             return AddCore(movie);
         }
 
-        public Movie Update(Movie movie,  out string message )
+        public Movie Update(Movie movie)
         {
             if (movie == null)
-            {
-                message = "Movie cannot be null,";
-                return null;
-            }
+                throw new ArgumentNullException(nameof(movie));
 
-            var errors = movie.Validate();
-            var error = errors.FirstOrDefault();
-            if(errors != null)
-            {
-                //return first error
-                message = error.ErrorMessage;
-                return null;
-            }
+
+            movie.Validate();
+
             
             //verify it exist, and is unique
             var existing = GetCore(movie.Title);
 
             if( existing != null && existing.Id != movie.Id)
-            {
-                message = "Movie already exists.";
-                return null;
-            }
+                throw new ArgumentException("Movie already exists", nameof(movie));
 
             existing = existing ?? GetCore(movie.Id);
             if(existing == null)
-            {
-                message = "Movie not found";
-                return null;
-            }
+                throw new ArgumentException("Movie not found", nameof(movie));
 
-            message = null;
             return UpdateCore(movie);
 
         }

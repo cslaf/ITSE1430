@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CadeSchlaefli.MovieLib.Data;
 using CadeSchlaefli.MovieLib.Data.Memory;
+using CadeSchlaefli.Data.Sql;
 
 namespace CadeSchlaefli.MovieLib.Windows
 {
@@ -30,14 +32,25 @@ namespace CadeSchlaefli.MovieLib.Windows
         {
             base.OnLoad(e);
 
+            var connString = ConfigurationManager.ConnectionStrings["MovieDatabase"];
+            _database = new SqlMovieDatabase(connString.ConnectionString);
+
             RefreshUI();
         }
 
         private void RefreshUI()
         {
-            var movies = _database.GetAll();
+            IEnumerable<Movie> movies = null;
+            try
+            {
+                movies = _database.GetAll();
+            } catch (Exception)
+            {
+                MessageBox.Show("Error loading products");
+            };
 
-            dataGridView.DataSource = movies.ToList();
+            //bind to grid
+            movieBindingSource.DataSource = movies?.ToList();
         }
 
         private Movie GetSelectedMovie()
@@ -59,9 +72,17 @@ namespace CadeSchlaefli.MovieLib.Windows
             var form = new MovieDetailForm("Add Movie");
             if (form.ShowDialog(this) != DialogResult.OK)
                 return;
-            _database.Add(form.Movie, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+            try
+            {
+                _database.Add(form.Movie);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                OnMovieAdd(sender, e);
+            }
+
+            //if (!String.IsNullOrEmpty(message))
+            //    MessageBox.Show(message);
 
             RefreshUI();
 
@@ -98,7 +119,8 @@ namespace CadeSchlaefli.MovieLib.Windows
                 MessageBox.Show(this, "No Movie to delete");
                 return;
             } else if (ShowConfirmation("Are you sure you want to delete the movie?", "Delete Movie"))
-                _database.Remove(movie.Id);
+
+           _database.Remove(movie.Id);
 
             RefreshUI();
 
@@ -117,9 +139,14 @@ namespace CadeSchlaefli.MovieLib.Windows
 
             //update product
             form.Movie.Id = movie.Id;
-            _database.Update(form.Movie, out var message);
-            if (!String.IsNullOrEmpty(message))
-                MessageBox.Show(message);
+            try
+            { 
+                _database.Update(form.Movie);
+             } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                EditSelectedMovie();
+            }
 
             RefreshUI();
         }
