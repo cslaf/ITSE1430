@@ -2,4 +2,4 @@ Input File is included in the root folder of the solution, you can open any text
 
 Should run painlessly in Visual stuido 2017, just open the solution and hit f5.
 
-Credit to https://github.com/msarsha/BinaryTree for the binary tree implementation. Had to change the InOrderEnumerator to check for a null tree, but otherwise it's their code.
+Credit to https://github.com/msarsha/BinaryTree for the binary tree implementation. Had to change the InOrderEnumerator to check for a null tree, and added an actual search method so adding a line is o(log(n)) instead of the o(log(n)) from firstOrDefault. Otherwise their code.

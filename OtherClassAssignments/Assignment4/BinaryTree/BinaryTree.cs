@@ -11,11 +11,21 @@ namespace BinaryTree
         public sealed class BinaryTree<T> : ICollection<T>
           where T : IComparable
         {
-            private BinaryTreeNode<T> _rootNode;
+            public BinaryTreeNode<T> _rootNode;
             private BinaryTreeNode<T> _searchResult;
             private ITreeBalancer<T> _balancer;
             public int Count { get; private set; }
 
+            public T Search(BinaryTreeNode<T> _rootNode,  T toFind )
+            {
+                if (_rootNode == null)
+                    return default(T);
+                if (0 == _rootNode.Value.CompareTo(toFind))
+                    return _rootNode.Value;
+                if (_rootNode.Value.CompareTo(toFind) > 0)
+                    return Search(_rootNode.LeftNode, toFind);
+                return Search(_rootNode.RightNode, toFind);
+            }
             public BinaryTree()
             {
                 _balancer = new AvlTreeBalance<T>();
@@ -107,8 +117,8 @@ namespace BinaryTree
                     _searchResult = searchIn;
                     return;
                 }
-
-                SearchNode(searchIn.LeftNode, searchFor);
+                if(searchIn.CompareTo(searchFor) >1) //without this it iterates through the whole tree
+                    SearchNode(searchIn.LeftNode, searchFor);
                 SearchNode(searchIn.RightNode, searchFor);
             }
 

@@ -1,0 +1,587 @@
+a 1  2  4  6  8  10  11  12  17  18  19  22  23  26  29  35  37  42  51 
+able 35  47 
+abounding 20 
+about 4  10 
+above 18 
+absurd 51 
+abuses 18 
+abusing 25 
+academy 7 
+according 19 
+account 1  7  41 
+accused 25 
+adjust 30 
+advice 2 
+affect 37 
+afraid 8 
+after 18 
+against 16 
+ago 10 
+agreed 26 
+all 18  21  29  46  48  52 
+allow 26 
+altered 34 
+although 4  47 
+altogether 5 
+am 26  46 
+amendment 17  43 
+among 26 
+an 9  51 
+and 1  2  3  4  5  6  7  9  10  11  12  14  16  18  19  20  21  22  23  24  25  26  28  29  30  32  34  37  38  40  41  42  43  46  47  51 
+animal 5 
+animals 17  46 
+anne 4 
+another 10 
+answer 8 
+answering 24 
+any 3  4  5  10  24  29  34  37  40  44  50 
+applied 10 
+approbation 43 
+apt 9  33 
+are 10  23  24  26  33  34  37  42  44 
+as 2  3  9  11  18  22  28  30  32  33  37  40  41  42  44  46  51 
+assigning 28 
+at 10  18  34 
+attempted 51 
+author 26 
+avoid 11 
+banished 20 
+be 1  3  10  17  23  26  29  43 
+because 41  42  43 
+become 33 
+been 23  24  28  40 
+before 5 
+behold 18 
+being 6  16  41 
+besides 5 
+blazing 20 
+bold 37 
+book 2  19  23  29  37 
+books 20  26 
+brain 37 
+bring 17 
+brobdingnag 40 
+brobdingrag 40 
+brother 42 
+brutes 11  42 
+bundles 26 
+but 3  4  9  21  30  33  50  52 
+by 1  2  6  11  16  17  19  22  32  46  51 
+call 9 
+called 1  2 
+candid 30 
+cannot 18  30  32 
+capable 23 
+careless 28 
+carried 11 
+carrier 24 
+censure 37 
+change 33 
+changed 8  20 
+chief 6 
+circumstances 7 
+comes 34 
+common 20 
+compass 47 
+complain 11  16  37 
+complaints 50 
+composition 5 
+conceptions 35 
+concerning 41 
+condemned 21 
+confess 40  47  50 
+confidence 25 
+confound 28 
+consent 3 
+consequence 43 
+consider 17 
+considered 5 
+contrary 24 
+conversing 51 
+conviction 41 
+copy 29 
+correct 2  23 
+corrections 29 
+corruptions 18  50 
+cotton 22 
+could 9  34  37 
+counted 22 
+country 34  42 
+courts 21 
+cousin 2 
+creatures 11 
+curiosity 34 
+dampier 2 
+dates 28 
+day 28 
+deceiving 47 
+decent 5 
+deducible 22 
+deeply 47 
+defend 46 
+degenerate 43  44 
+degenerated 46 
+degrading 25 
+deliver 35 
+delivered 22 
+desired 17  19 
+destroyed 29 
+detestable 12 
+dialect 34 
+did 2  4  6  33 
+differ 42 
+difficulty 47 
+directions 2 
+discourse 7 
+disgracers 21 
+disposition 23 
+dispute 41 
+distance 10 
+do 3  8  16  42  46 
+done 52 
+drop 38 
+during 6 
+each 33 
+eat 21 
+edition 30 
+education 20 
+effect 19 
+either 2  7 
+else 51 
+encouragement 22 
+england 6 
+entirely 20 
+entreaties 16 
+equivocating 47 
+erroneously 40 
+especially 10  48 
+esteem 4 
+europeans 48 
+even 6  42 
+ever 29  52 
+every 3  9  23  24  33  41 
+example 18  46 
+existence 38 
+expect 18 
+expectation 24 
+extinguished 19 
+fact 5 
+faction 19 
+facts 41 
+false 5  16 
+family 51 
+far 24  37 
+fault 32 
+feared 10 
+female 20  25 
+few 51 
+fiction 37 
+find 25  28  32 
+firmly 22 
+first 6  32 
+five 10 
+folk 25 
+folly 23 
+for 5  18  25  26  40  43  52 
+forbear 50 
+formerly 8 
+found 33 
+freely 50 
+frequent 1 
+from 22  24  34  42  43 
+full 18 
+further 50 
+gave 3 
+gentleman 2 
+giving 8 
+glorious 4 
+go 42 
+godolphin 6 
+gone 37 
+good 17  21 
+govern 6  10 
+great 1  16  21  25  37 
+habit 47 
+had 18  23 
+hardly 8  34 
+has 18  19  28 
+have 5  7  11  24  25  29  33  37  38  40  41  50  51  52 
+hear 29  32 
+heard 40 
+help 32 
+her 4  6 
+herd 10 
+here 3 
+hinted 8 
+hints 38 
+hire 2 
+his 2 
+hither 12 
+honest 19 
+honour 21 
+hope 1 
+house 34 
+houyhnhnm 5  7 
+houyhnhnmland 42  46 
+houyhnhnms 11  38  41  43 
+how 9  17 
+however 29 
+human 4  25 
+i 1  3  4  8  9  10  11  14  16  17  18  19  22  25  26  28  29  30  32  33  34  37  40  41  42  43  44  46  47  50  51  52 
+if 11  23  29  37 
+illustrious 46 
+immediately 41 
+improve 44 
+in 2  6  7  8  9  10  11  14  16  18  20  21  22  24  32  33  35  41  42  43  44  47  51 
+incapable 17 
+inclination 5 
+indeed 11  22  40 
+infernal 47 
+inhabitants 38 
+ink 22 
+innuendo 9 
+insert 29 
+inserted 3 
+insisted 17 
+insomuch 33 
+instead 18 
+instructed 32 
+instructions 46 
+intelligible 35 
+intentions 19 
+interpolator 4 
+interpret 9 
+is 29  41  42  46 
+island 18 
+it 1  5  9  18  23  25  30  32  42  46 
+jabber 42 
+judges 19 
+judgment 16 
+judicious 30 
+keep 43 
+keys 24 
+kind 4 
+kingdom 52 
+know 8  19 
+knowledge 5 
+known 46 
+land 33 
+laputa 40 
+last 50 
+latter 3  33  42 
+law 20 
+leagues 10 
+learn 19 
+learned 19  33 
+learning 21 
+least 18  23 
+leave 30 
+left 29 
+less 3  41  43 
+let 19 
+letter 8  19 
+letters 24 
+levees 21 
+libels 24 
+like 9  33 
+likewise 7  25  28 
+lilliput 40 
+little 10  18 
+living 11 
+loading 24 
+london 34 
+looked 9 
+loose 1 
+lord 6 
+lying 47 
+made 7 
+majesty 4 
+majesty�s 6 
+make 26  50 
+manifest 42 
+manner 8  35 
+manuscript 29 
+many 9  32  42 
+mariners 32 
+master 5  7  47 
+material 7 
+matter 30 
+may 29 
+me 1  7  19  26  34  37  43  51 
+memoirs 24 
+memory 4 
+mere 37 
+merit 21 
+minced 8 
+mind 17 
+mine 37 
+minister 6 
+ministers 21 
+miserable 46 
+mistake 28 
+mixture 44 
+modest 20 
+monstrous 12 
+month 28 
+months 18  23 
+more 4  38 
+most 4  11 
+motive 12  17 
+much 3  14  16 
+must 23  40  50 
+my 1  2  5  7  8  12  16  19  23  24  26  28  29  30  32  34  37  41  43  46  48  50  51 
+myself 25  50 
+naked 42 
+nature 25  50 
+natures 23 
+nay 6 
+necessity 51 
+neighing 43 
+neither 28  29  34 
+never 40  51 
+new 34 
+new-fangled 33 
+next 16 
+no 38 
+nobility�s 20 
+nor 28  32 
+not 3  5  7  9  11  26  32  40  42  43 
+nothing 21 
+now 10  32  52 
+observe 34 
+occasion 50 
+of 1  2  3  4  5  6  7  8  10  11  12  16  17  18  20  21  23  24  25  26  28  29  32  34  37  38  40  41  42  43  44  46  47  50  51 
+offence 8 
+often 17 
+old 34 
+oldest 32 
+omitted 3  7 
+on 1  17  24 
+one 12  19 
+ones 33 
+only 9  42 
+opinion 16 
+or 4  8  10  18  23  41  50 
+order 2 
+original 29 
+other 22  35  50 
+others 16  26 
+ought 5 
+our 5  24  32  35 
+out 34  37 
+over 9 
+own 1  8  16  22  26  34  37  51 
+owned 23 
+oxford 6 
+paragraph 4 
+part 6 
+particularly 4  51 
+parts 24  32 
+party 19 
+passages 7 
+people 9  40 
+physicians 20 
+pious 4 
+place 16 
+plainly 22 
+pleaders 19 
+please 30 
+pleased 8 
+power 3  9 
+praise 5  43 
+pray 9  17 
+precept 17 
+precepts 22 
+press 9  21 
+presume 46 
+presumptuous 40 
+prevailed 1  16 
+principal 12 
+printer 28 
+probability 41 
+produced 19 
+project 51 
+projectors 7 
+proper 14  32 
+prose 21 
+proved 18 
+public 17 
+publication 29 
+publicly 1 
+publish 1 
+published 17 
+punish 9 
+put 2  18 
+pyramids 20 
+queen 4 
+quench 22 
+race 43  51 
+rational 11 
+reader 41 
+readers 30 
+ready 1 
+reason 11  18  37 
+reasoning 16 
+reflecting 25 
+reflections 24 
+reformations 22 
+reforming 51 
+reign 6  10 
+related 41 
+relation 14 
+remember 3  33 
+remove 47 
+renounce 3 
+reposed 14 
+retirement 12 
+return 34  50 
+returns 28 
+reverence 4 
+revived 50 
+rewarded 21 
+rooted 47 
+round 2 
+said 10 
+say 7 
+schemes 52 
+sea 32  33 
+sea-language 32 
+second 6  24  29 
+see 11  25 
+seeing 18 
+sense 20  21 
+sent 29 
+seven 23 
+several 7  28 
+sex 25 
+shall 1  30 
+she 6 
+should 3  29  37  40  51 
+shuffling 47 
+sight 12 
+since 29  33  50 
+single 19 
+six 18 
+smithfield 20 
+so 5  6  9  11  18  24  25  28  34  37  40  42  46  47  51 
+some 2  6  7  16  20  26  29  32  37  44  50 
+something 8 
+sort 42 
+souls 47 
+speak 33 
+species 4  17  48  51 
+spelt 40 
+spoke 9 
+stable 43 
+stand 30 
+state 25 
+still 25  44 
+stop 18 
+stranger 26 
+strikes 41 
+style 2  25 
+subject 23 
+successively 6 
+such 8  52 
+suffer 16 
+sufficient 23 
+swept 21 
+tell 14 
+than 4  38  43 
+that 1  3  4  5  6  7  8  9  17  19  23  24  25  28  30  33  34  37  38  40  46  47  50  51 
+the 2  3  5  6  7  9  10  11  14  16  17  20  21  22  23  24  25  26  28  29  32  33  34  35  37  38  40  41  42  43  46  47  48  51 
+their 21  22  23  33  34  41  42  43 
+them 2  8  11  26  30  37  41 
+themselves 26 
+there 29  41  42 
+therefore 3 
+these 11  22  43  46 
+they 11  22  25  30  33  42  44 
+thing 3  7  9 
+think 9  37  46 
+thirst 22 
+this 8  18  42  50  52 
+thoroughly 21 
+those 11  26  43  51 
+thought 10  14 
+thousand 10  22 
+thousands 42 
+through 46 
+thus 14 
+time 10  23 
+times 28 
+tincture 20 
+to 1  2  3  5  7  8  9  10  11  14  16  17  18  19  21  23  25  26  28  30  33  34  35  37  38  40  41  42  43  46  47  50 
+travels 1  16  26  37 
+troubling 50 
+true 28 
+trust 14 
+truth 21  41 
+two 6  43  47 
+unavoidable 51 
+uncorrect 1 
+under 11 
+understand 34 
+unhappiness 10 
+united 43 
+university 2 
+upon 16  22  25  33  50 
+upright 19 
+urgency 1 
+us 34 
+use 32  42 
+utmost 47 
+utopia 38 
+utterly 17 
+vehicle 11 
+veracity 46 
+verse 21 
+very 1  9  11  16  47 
+vexatious 50 
+vice 23  44 
+virtue 20  23 
+virtues 44 
+visionary 52 
+visit 34 
+voyage 2 
+voyages 28  32 
+want 16 
+warning 18 
+was 5  6  7  12  32  34  47 
+watchful 9 
+way 37 
+we 34 
+weeded 21 
+week 24 
+well 46 
+were 8  9  11  17  19  22  23 
+when 8  10  11  17  19  34  42 
+whenever 1 
+wherein 25 
+whereof 6 
+which 9  23  26  29  33 
+while 32 
+who 10  42 
+whole 43 
+wholly 26 
+will 1  26 
+wisdom 23 
+wit 21 
+with 2  20  22  24  32  41  47  51  52 
+without 44 
+word 40 
+words 33 
+work 8 
+world 2 
+would 19  43 
+writers 25 
+wrote 42 
+yahoo 34  40  46  50  51 
+yahoos 10  11  17  20  23  32  33  37  38  41 
+year 28  33 
+years 10  47 
+yet 24  30  40 
+you 1  3  4  7  8  9  14  16  17  19  24  29  50 
+young 2  20  32 
+your 1  4  17  22  24  28  51 
+yourself 14 

@@ -35,7 +35,8 @@ namespace Assignment4
                     {
                         var toAdd = new WordData(word.ToLower().Trim(punctuation));
                         toAdd.lines.Add(lineNum);
-                        var existing = actuallyTree.FirstOrDefault(e => 0 == e?.CompareTo(toAdd));
+                        //var existing = actuallyTree.FirstOrDefault(e => 0 == e?.CompareTo(toAdd)); this is in order traversal, so it's O(N)
+                        var existing = actuallyTree.Search(actuallyTree._rootNode, toAdd); //actual search function.
                         if (existing == null)
                             actuallyTree.Add(toAdd);
                         else
