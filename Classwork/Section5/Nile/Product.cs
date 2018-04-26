@@ -23,9 +23,9 @@ namespace Nile
             set { _name = value; }
         }
         /// <summary>Description of the product. </summary>
-        [Range(0, Double.MaxValue, ErrorMessage = "Price must be >= 0")]
         public string Description { get; set; }
         /// <summary>Price of Product in Dollars. </summary>
+        [Range(0, Double.MaxValue, ErrorMessage = "Price must be >= 0")]
         public decimal Price { get; set; } = 0;
         /// <summary> If the product has been disconintued. </summary>
         public bool IsDiscontinued { get; set; }
