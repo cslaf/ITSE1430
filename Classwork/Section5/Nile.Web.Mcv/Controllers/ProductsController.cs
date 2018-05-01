@@ -26,8 +26,8 @@ namespace Nile.Web.Mcv.Controllers
         public ActionResult Index()
         {
             var products = _database.GetAll();
-
-            return Json(products.Select(p => p.ToModel()), JsonRequestBehavior.AllowGet);
+            return View(products.Select(p => p.ToModel()));
+            //return Json(products.Select(p => p.ToModel()), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -42,28 +42,27 @@ namespace Nile.Web.Mcv.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return Json(new ProductModel(), JsonRequestBehavior.AllowGet);
+            return View(new ProductModel());
         }
         [HttpPost]
         public ActionResult Create (ProductModel model )
         {
-
-            if (!ModelState.IsValid)
-                throw new Exception("Model not valid");
-
             try
             {
+                if (ModelState.IsValid)
+                { 
                 var product = model.ToProduct();
 
-                product = _database.Add(product);
+                    product = _database.Add(product);
 
-                return Json(product.ToModel(), JsonRequestBehavior.AllowGet);
+                    return RedirectToAction(nameof(Index));
+                }
             }catch(Exception e)
             {
                 ModelState.AddModelError("", e.Message);
             }
 
-            return Json(ModelState);
+            return View(model);
 
         }
         [HttpGet]
@@ -72,60 +71,61 @@ namespace Nile.Web.Mcv.Controllers
             var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
             if (product == null)
                 return HttpNotFound();
-            return Json(product, JsonRequestBehavior.AllowGet);
+            return View(product.ToModel());
         }
         [HttpPost]
         public ActionResult Edit (ProductModel model )
         {
 
-            if (!ModelState.IsValid)
-                throw new Exception("Model not valid");
-
             try
             {
-                var product = model.ToProduct();
+                if (ModelState.IsValid)
+                {
+                    var product = model.ToProduct();
 
-                product = _database.Update(product);
+                    product = _database.Update(product);
 
-                return Json(product.ToModel(), JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("Index");
+                    
+                }
             }catch(Exception e)
             {
                 ModelState.AddModelError("", e.Message);
             }
 
-            return Json(ModelState);
+            return View(model);
 
         }
         [HttpGet]
         [Route("products/delete/{id}")]
-        public ActionResult getDelete (int id )
+        public ActionResult Delete (int id )
         {
             var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
             if (product == null)
                 return HttpNotFound();
-            return Json(product, JsonRequestBehavior.AllowGet);
+            return View(product.ToModel());
         }
         [HttpPost]
-        public ActionResult Delete (int id )
+        public ActionResult Delete (ProductModel model)
         {
 
             try
             {
-                var product = _database.GetAll().FirstOrDefault(p => p.Id == id);
+                var product = _database.GetAll().FirstOrDefault(p => p.Id == model.Id);
 
                 if (product == null)
                     return HttpNotFound();
 
-                _database.Remove(id);
+                _database.Remove(model.Id);
 
-                return Content(";");
+                return RedirectToAction(nameof(Index));
 
             }catch(Exception e)
             {
                 ModelState.AddModelError("", e.Message);
             }
 
-            return Json(ModelState, JsonRequestBehavior.AllowGet);
+            return View(model);
 
         }
         

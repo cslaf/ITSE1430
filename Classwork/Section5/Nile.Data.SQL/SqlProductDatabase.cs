@@ -97,8 +97,10 @@ namespace Nile.Data.SQL
 
         private static Product ReadData( SqlDataReader reader )
         {
+            //check description if null
+
             return new Product() {
-                Id = Convert.ToInt32(reader["Id"]),
+                Id = reader.GetInt32(0),
                 Name = reader.GetFieldValue<string>(1),
                 Description = reader.GetString(3),
                 Price = reader.GetDecimal(2),
